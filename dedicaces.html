@@ -1,0 +1,3367 @@
+<!doctype html>
+<!--
+Eigrutel Lab - Atelier d'outils libres pour la bande dessinée
+Programme conçu et développé par Simon Léturgie dans le cadre d'Eigrutel BD Academy.
+Nom : Dédicaces
+Version : 1.0.0
+Date : 22-09-2026
+JJ Code : GNU AGPL v3.0 ou version ultérieure.
+Documentation et modèles : CC BY-SA 4.0, sauf mention contraire.
+Marques, logos et signes distinctifs Eigrutel / Eigrutel Lab / Eigrutel BD Academy : réservés.
+-->
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"
+    />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#f7f4ec" />
+    <title>Dédicaces</title>
+    <link rel="icon" type="image/png" href="favicon/favdedic.png?v=1.0.0" />
+    <link rel="apple-touch-icon" href="favicon/favdedic.png?v=1.0.0" />
+    <meta name="apple-mobile-web-app-title" content="Dédicaces" />
+    <style>
+      /* Design tokens and shared typography. */
+      :root {
+        --ink: #393e36;
+        --red: #875046;
+        --muted: #6b7065;
+        --line: #dddcd1;
+        --bg: #f7f4ec;
+        --font:
+          system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font: 16px/1.55 var(--font);
+      }
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+      button,
+      a {
+        touch-action: manipulation;
+      }
+      button {
+        cursor: pointer;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: #fffdf7;
+        color: var(--ink);
+        padding: 10px 16px;
+        font-weight: 600;
+        transition:
+          background 0.15s,
+          box-shadow 0.15s,
+          transform 0.15s;
+      }
+      button:hover {
+        background: #edece2;
+        border-color: #b8bcab;
+      }
+      button:focus-visible,
+      a:focus-visible,
+      input:focus-visible,
+      select:focus-visible,
+      textarea:focus-visible {
+        outline: 3px solid #8a6845;
+        outline-offset: 3px;
+      }
+      .primary {
+        background: #566a56;
+        color: #fffdf7;
+        border-color: transparent;
+      }
+      .primary:hover {
+        background: #435844;
+        color: white;
+      }
+      .quiet {
+        background: transparent;
+      }
+      .danger {
+        color: #8d403c;
+      }
+      .shell {
+        display: grid;
+        grid-template-columns: 210px minmax(0, 1fr);
+        min-height: 100vh;
+      }
+      .sidebar {
+        background: #e9eddf;
+        padding: 34px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 42px;
+        border-right: 1px solid #dce1d1;
+      }
+      .brand {
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -1px;
+      }
+      .brand small {
+        display: block;
+        font-size: 11px;
+        letter-spacing: 2px;
+        font-weight: 500;
+        margin-top: 6px;
+        color: #616d58;
+      }
+      .sidebar nav {
+        display: grid;
+        gap: 7px;
+      }
+      .sidebar button {
+        width: 100%;
+        text-align: left;
+        color: #4f5f49;
+        background: transparent;
+        border-color: transparent;
+        font-size: 14px;
+        padding: 13px 12px;
+      }
+      .sidebar button:hover {
+        background: #dce4d1;
+      }
+      .sidebar button.active {
+        background: #cfdcc4;
+        color: #34472e;
+      }
+      .sidebar .bottom {
+        margin-top: auto;
+        color: #65745e;
+        font-size: 12px;
+      }
+      .sidebar .bottom p {
+        margin: 19px 12px 0;
+      }
+      .sidebar .bottom button {
+        font-size: 13px;
+        font-weight: 500;
+      }
+      .main {
+        padding: 38px 32px;
+        width: 100%;
+        max-width: 1740px;
+        margin: 0 auto;
+        min-width: 0;
+      }
+      .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 28px;
+      }
+      .eyebrow {
+        font-size: 12px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 600;
+      }
+      h1 {
+        font-size: 34px;
+        line-height: 1.2;
+        font-weight: 650;
+        letter-spacing: -1px;
+        margin: 9px 0 0;
+      }
+      h2 {
+        font-size: 22px;
+        font-weight: 650;
+        letter-spacing: -0.4px;
+        margin: 0 0 17px;
+        line-height: 1.35;
+      }
+      h3 {
+        font-size: 17px;
+        font-weight: 650;
+        margin: 0 0 12px;
+      }
+      p {
+        margin: 7px 0 16px;
+      }
+      .toolbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 26px;
+      }
+      .tabs {
+        display: flex;
+        gap: 4px;
+        background: #ebece2;
+        padding: 5px;
+        border-radius: 14px;
+      }
+      .tabs button {
+        padding: 8px 15px;
+        font-size: 14px;
+        border-color: transparent;
+        background: transparent;
+        color: #646c5e;
+      }
+      .tabs button.active {
+        background: #fffdf7;
+        color: #374931;
+        box-shadow: 0 2px 6px #3c4d2910;
+      }
+      .count {
+        font-size: 14px;
+        color: var(--muted);
+      }
+      /* Responsive, fully coloured event cards. */
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 20px;
+        align-items: stretch;
+      }
+      .card {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        min-width: 0;
+        min-height: 365px;
+        background: var(--card-bg, #ded9bb);
+        color: #343a32;
+        border: 0;
+        border-radius: 22px;
+        padding: 0;
+        overflow: hidden;
+        box-shadow: 0 4px 10px #53534105;
+      }
+      .card:hover {
+        background: var(--card-bg, #ded9bb);
+        transform: translateY(-4px);
+        box-shadow: 0 12px 23px #53534116;
+      }
+      .cardtop {
+        padding: 24px 22px 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+      }
+      .date {
+        color: #343a32;
+      }
+      .date b {
+        display: block;
+        font-size: 49px;
+        font-weight: 500;
+        letter-spacing: -2px;
+        line-height: 1;
+      }
+      .date span {
+        font-size: 13px;
+        font-weight: 600;
+        display: block;
+        margin-top: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+      }
+      .badge {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 5px 11px;
+        border-radius: 20px;
+        background: #ffffff50;
+        color: #414637;
+        max-width: 100%;
+      }
+      .cardbody {
+        padding: 12px 22px 18px;
+        flex: 1;
+      }
+      .card h2 {
+        font-size: 21px;
+        line-height: 1.3;
+        letter-spacing: -0.4px;
+        margin-bottom: 13px;
+        overflow-wrap: anywhere;
+      }
+      .card p {
+        font-size: 14px;
+        font-weight: 400;
+        margin: 6px 0;
+        color: #363c32;
+      }
+      .cardnote {
+        padding: 0 22px 12px;
+        font-size: 12px;
+        font-weight: 400;
+        color: #363c32;
+      }
+      .cardfoot {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+        margin: 0 22px;
+        padding: 17px 0 22px;
+        border-top: 1px solid #39403222;
+        font-size: 12px;
+        font-weight: 500;
+      }
+      .cardfoot > span:last-child {
+        align-self: flex-end;
+        font-size: 14px;
+        font-weight: 650;
+      }
+      .empty {
+        background: #eeecdf;
+        border-radius: 24px;
+        padding: 65px 24px;
+        text-align: center;
+      }
+      .empty .mark {
+        font-size: 55px;
+        color: #758365;
+        margin-bottom: 14px;
+      }
+      .empty p {
+        max-width: 470px;
+        margin: 0 auto 22px;
+        color: var(--muted);
+      }
+      .empty button {
+        margin: 5px;
+      }
+      .subtle {
+        font-size: 14px;
+        color: var(--muted);
+      }
+      .notice {
+        padding: 14px 18px;
+        background: #f2dfad;
+        color: #544324;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        font-size: 14px;
+      }
+      .detailhead {
+        background: var(--card-bg, #e3ddc7);
+        border-radius: 23px;
+        padding: 28px 30px;
+        margin-bottom: 24px;
+      }
+      .detailhead .eyebrow {
+        color: #535b4b;
+        line-height: 1.8;
+      }
+      .detailhead a {
+        color: #654c39;
+      }
+      .detailhead h1 {
+        overflow-wrap: anywhere;
+      }
+      .detailhead p {
+        margin-bottom: 10px;
+      }
+      .detailgrid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .panel {
+        background: #fffdf7;
+        border: 1px solid #e5e2d6;
+        padding: 26px;
+        border-radius: 20px;
+        min-width: 0;
+      }
+      .panel:nth-child(1) {
+        background: #edf0e4;
+      }
+      .panel:nth-child(2) {
+        background: #f1e6d8;
+      }
+      .panel:nth-child(3) {
+        background: #e7edef;
+      }
+      .panel:nth-child(4) {
+        background: #f2e7e1;
+      }
+      .panel h2 {
+        font-size: 20px;
+      }
+      .wide,
+      .reviewpanel {
+        grid-column: 1/-1;
+      }
+      .reviewpanel {
+        background: #f5eed8;
+      }
+      .item {
+        padding: 15px 0;
+        border-top: 1px solid #393e3619;
+      }
+      .item:first-of-type {
+        border-top: 0;
+      }
+      .item p {
+        margin: 5px 0;
+      }
+      .links {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      a {
+        color: #805345;
+        text-underline-offset: 3px;
+        overflow-wrap: anywhere;
+      }
+      .actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .stack {
+        display: grid;
+        gap: 15px;
+      }
+      .schedule-wrap {
+        overflow: auto;
+        border: 1px solid #dddfd3;
+        border-radius: 16px;
+        background: #fffef9;
+      }
+      .schedule {
+        min-width: 750px;
+      }
+      .days,
+      .grid {
+        display: grid;
+        grid-template-columns: 54px repeat(7, minmax(95px, 1fr));
+      }
+      .days {
+        background: #e8ecdf;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+      }
+      .days div {
+        text-align: center;
+        padding: 12px 2px;
+        font-size: 13px;
+        border-right: 1px solid #39403212;
+      }
+      .days b {
+        display: block;
+        font-size: 18px;
+        font-weight: 600;
+      }
+      .timecol {
+        position: relative;
+      }
+      .timecol span {
+        position: absolute;
+        left: 9px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .daycol {
+        position: relative;
+        border-left: 1px solid #e3e5da;
+        background: repeating-linear-gradient(
+          to bottom,
+          transparent 0,
+          transparent 59px,
+          #e7e8df 59px,
+          #e7e8df 60px
+        );
+      }
+      .slot {
+        position: absolute;
+        border-radius: 8px;
+        padding: 5px 6px;
+        font-size: 12px;
+        line-height: 1.3;
+        overflow: hidden;
+        min-height: 20px;
+        background: #dfbab0;
+        color: #503a34;
+        border: 1px solid #cba49b;
+      }
+      .slot:hover {
+        background: #d5aca1;
+      }
+      .slot.transport {
+        background: #c1d5d4;
+        color: #304746;
+        border-color: #a7c2c0;
+      }
+      .slot.transport:hover {
+        background: #b2cccb;
+      }
+      .slot strong {
+        display: block;
+      }
+      .legend {
+        display: flex;
+        gap: 20px;
+        font-size: 13px;
+        margin: 12px 0;
+      }
+      .legend > span:before {
+        content: "";
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 3px;
+        background: #cf9b8d;
+        margin-right: 7px;
+      }
+      .legend > span + span:before {
+        background: #95b9b7;
+      }
+      .weeklabel {
+        font-weight: 600;
+      }
+      dialog {
+        border: 1px solid #e0dfd3;
+        padding: 0;
+        border-radius: 24px;
+        width: min(860px, 94vw);
+        max-height: 92vh;
+        background: #f7f5ed;
+        color: var(--ink);
+        box-shadow: 0 30px 100px #313b3040;
+      }
+      dialog::backdrop {
+        background: #35403070;
+        backdrop-filter: blur(3px);
+      }
+      dialog header {
+        padding: 21px 26px;
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+        background: #f7f5ed;
+        position: sticky;
+        top: 0;
+        z-index: 3;
+      }
+      dialog header h2 {
+        margin: 0;
+        font-size: 23px;
+      }
+      dialog header button {
+        background: transparent;
+        border: 0;
+      }
+      .formbody {
+        padding: 24px;
+        display: grid;
+        gap: 22px;
+      }
+      .formsection {
+        border: 1px solid #e0dfd2;
+        border-radius: 16px;
+        background: #fffdf8;
+        overflow: hidden;
+      }
+      .sectionhead {
+        padding: 15px 19px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        background: #e4e7d7;
+        color: #424e39;
+      }
+      .sectionhead h3 {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.4;
+      }
+      .sectionnum {
+        font-size: 12px;
+        font-weight: 500;
+        margin-right: 12px;
+        color: #666e5e;
+      }
+      .sectionhead button {
+        padding: 7px 12px;
+        font-size: 14px;
+        background: #ffffff70;
+        border-color: #ffffff50;
+      }
+      .formsection:nth-child(2) .sectionhead {
+        background: #eedcc9;
+      }
+      .formsection:nth-child(3) .sectionhead {
+        background: #d5e2df;
+      }
+      .formsection:nth-child(4) .sectionhead {
+        background: #e9d5cb;
+      }
+      .formsection:nth-child(5) .sectionhead {
+        background: #dfdccc;
+      }
+      .formsection:nth-child(6) .sectionhead {
+        background: #dbdee7;
+      }
+      .formsection:nth-child(7) .sectionhead {
+        background: #ecdfb8;
+      }
+      .sectioncontent {
+        padding: 21px;
+      }
+      .sectioncontent > p:last-child {
+        margin-bottom: 0;
+      }
+      /* Zero minimum column width prevents native date/time inputs overflowing on Safari. */
+      .fields {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+        min-width: 0;
+        align-items: start;
+      }
+      label {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        min-width: 0;
+        gap: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #52594b;
+      }
+      input,
+      textarea,
+      select {
+        width: 100%;
+        padding: 11px 12px;
+        border: 1px solid #d6dacd;
+        border-radius: 9px;
+        background: #fffefb;
+        color: var(--ink);
+        min-width: 0;
+        font-weight: 400;
+      }
+      input::placeholder,
+      textarea::placeholder {
+        color: #797e72;
+      }
+      textarea {
+        resize: vertical;
+        min-height: 90px;
+      }
+      label.full {
+        grid-column: 1/-1;
+      }
+      .repeat {
+        padding: 18px;
+        background: #f1f2e9;
+        border-radius: 12px;
+        margin: 12px 0;
+      }
+      .repeat .remove {
+        margin-top: 13px;
+        padding: 6px 10px;
+        font-size: 13px;
+        background: transparent;
+        border-color: #d6d9cb;
+      }
+      .sectioncontent .repeat:first-child {
+        margin-top: 0;
+      }
+      .postit {
+        background: #efe0a7;
+        border: 0;
+        border-radius: 5px;
+        padding: 19px 22px;
+        color: #514725;
+        box-shadow: 0 5px 9px #5449220a;
+      }
+      .postit label {
+        color: #514725;
+        font-size: 15px;
+      }
+      .postit textarea {
+        background: transparent;
+        border: 0;
+        padding: 6px 0;
+        min-height: 145px;
+        line-height: 1.7;
+        color: #514725;
+      }
+      .postit textarea::placeholder {
+        color: #71653e;
+      }
+      .postit.readnote {
+        margin-top: 16px;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+        max-width: 760px;
+      }
+      .filelist {
+        font-size: 14px;
+      }
+      .filelist > div {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 8px;
+        overflow-wrap: anywhere;
+      }
+      .filelist button {
+        padding: 4px 9px;
+      }
+      .filelist span {
+        min-width: 0;
+      }
+      dialog footer {
+        position: sticky;
+        bottom: 0;
+        background: #f7f5ed;
+        border-top: 1px solid var(--line);
+        padding: 17px 24px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 9px;
+        z-index: 3;
+      }
+      .help {
+        max-width: 620px;
+        padding: 30px;
+      }
+      .help h2 {
+        margin-top: 16px;
+      }
+      #toast {
+        position: fixed;
+        bottom: 22px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #4e6047;
+        color: #fffdf7;
+        padding: 13px 20px;
+        border-radius: 14px;
+        z-index: 20;
+        max-width: 90vw;
+        box-shadow: 0 5px 22px #29342322;
+      }
+      #toast:empty {
+        display: none;
+      }
+      /* Responsive layout and print rules. */
+      @media (min-width: 1100px) {
+        .sidebar {
+          position: sticky;
+          top: 0;
+          height: 100vh;
+        }
+      }
+      @media (max-width: 1099px) {
+        .shell {
+          grid-template-columns: 180px minmax(0, 1fr);
+        }
+        .sidebar {
+          padding: 27px 15px;
+        }
+        .brand {
+          font-size: 25px;
+        }
+        .main {
+          padding: 28px 22px;
+        }
+        .cards {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 16px;
+        }
+      }
+      @media (max-width: 850px) {
+        .cards {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .detailgrid {
+          grid-template-columns: 1fr;
+        }
+        .wide,
+        .reviewpanel {
+          grid-column: auto;
+        }
+        .main {
+          padding: 25px 18px;
+        }
+      }
+      @media (max-width: 650px) {
+        .shell {
+          display: block;
+        }
+        .sidebar {
+          padding: 20px 18px;
+          display: block;
+          border-right: 0;
+          border-bottom: 1px solid #dce1d1;
+        }
+        .brand {
+          font-size: 26px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .brand small {
+          font-size: 10px;
+          letter-spacing: 1.5px;
+        }
+        .sidebar nav {
+          display: flex;
+          margin-top: 19px;
+          gap: 8px;
+        }
+        .sidebar nav button {
+          text-align: center;
+          font-size: 14px;
+          padding: 10px 7px;
+        }
+        .sidebar .bottom {
+          display: flex;
+          margin-top: 9px;
+          gap: 3px;
+        }
+        .sidebar .bottom button {
+          text-align: center;
+          font-size: 12px;
+          padding: 7px 3px;
+        }
+        .sidebar .bottom p {
+          display: none;
+        }
+        .main {
+          padding: 27px 16px;
+        }
+        .top {
+          align-items: flex-start;
+          gap: 12px;
+        }
+        h1 {
+          font-size: 28px;
+        }
+        .top .primary {
+          font-size: 13px;
+          padding: 10px 12px;
+          max-width: 150px;
+        }
+        .eyebrow {
+          font-size: 11px;
+        }
+        .cards {
+          gap: 13px;
+        }
+        .card {
+          min-height: 355px;
+          border-radius: 18px;
+        }
+        .cardtop {
+          padding: 21px 16px 12px;
+        }
+        .cardbody {
+          padding: 12px 16px 16px;
+        }
+        .card h2 {
+          font-size: 19px;
+        }
+        .cardfoot {
+          margin: 0 16px;
+        }
+        .cardnote {
+          padding: 0 16px 10px;
+        }
+        .date b {
+          font-size: 43px;
+        }
+        .date span {
+          font-size: 12px;
+        }
+        .card p {
+          font-size: 14px;
+        }
+        .badge {
+          font-size: 12px;
+          padding: 4px 9px;
+        }
+        .fields {
+          grid-template-columns: 1fr;
+        }
+        .fields .full {
+          grid-column: auto;
+        }
+        .formbody {
+          padding: 13px;
+        }
+        .sectioncontent {
+          padding: 16px;
+        }
+        .sectionhead {
+          padding: 13px 15px;
+        }
+        .sectionhead h3 {
+          font-size: 15px;
+        }
+        .sectionnum {
+          margin-right: 8px;
+        }
+        .sectionhead button {
+          padding: 7px;
+          font-size: 13px;
+        }
+        .panel {
+          padding: 20px;
+        }
+        .detailhead {
+          padding: 24px 20px;
+        }
+        .detailhead h1 {
+          font-size: 28px;
+        }
+        .days,
+        .grid {
+          grid-template-columns: 45px repeat(7, 115px);
+        }
+        .schedule {
+          min-width: 850px;
+        }
+        .weeklabel {
+          font-size: 14px;
+        }
+        .toolbar {
+          gap: 12px;
+        }
+        .empty {
+          padding: 40px 16px;
+        }
+        .actions button {
+          padding: 8px 11px;
+          font-size: 14px;
+        }
+      }
+      @media (max-width: 380px) {
+        .cards {
+          grid-template-columns: 1fr;
+        }
+        .card {
+          min-height: 320px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        button {
+          transition: none;
+        }
+        .card:hover {
+          transform: none;
+        }
+      }
+      @media print {
+        .sidebar,
+        .top button,
+        .actions,
+        .toolbar button,
+        dialog,
+        #toast {
+          display: none !important;
+        }
+        .shell {
+          display: block;
+        }
+        .main {
+          padding: 0;
+        }
+        .card,
+        .panel {
+          break-inside: avoid;
+        }
+        .card,
+        .detailhead,
+        .postit,
+        .slot {
+          print-color-adjust: exact;
+        }
+        .cards {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+        .schedule-wrap {
+          overflow: visible;
+        }
+        .schedule {
+          min-width: 0;
+        }
+        .grid,
+        .days {
+          grid-template-columns: 45px repeat(7, 1fr);
+        }
+      }
+
+      /* Compact month strip: Monday first, horizontal scrolling on small screens. */
+      .mini-calendar {
+        max-width: 525px;
+        margin: -5px 0 24px;
+      }
+      .mini-controls {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        margin-bottom: 8px;
+      }
+      .mini-controls button {
+        padding: 2px 9px;
+        min-height: 27px;
+        font-size: 14px;
+        background: transparent;
+        border-color: transparent;
+      }
+      .mini-controls button:hover {
+        background: #e8ecdf;
+      }
+      .mini-controls .mini-current {
+        font-size: 11px;
+        font-weight: 500;
+        padding: 3px 6px;
+      }
+      .mini-scroll {
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x proximity;
+        padding: 3px 2px 6px;
+      }
+      .mini-months {
+        display: flex;
+        gap: 12px;
+        width: max-content;
+      }
+      .mini-month {
+        width: 158px;
+        flex: 0 0 158px;
+        aspect-ratio: 1/1.09;
+        padding: 9px;
+        background: #fffdf780;
+        border: 1px solid #e3e2d8;
+        border-radius: 10px;
+        scroll-snap-align: start;
+      }
+      .mini-title {
+        font-size: 11px;
+        line-height: 1.4;
+        font-weight: 650;
+        text-align: center;
+        margin: 0 0 7px;
+        text-transform: capitalize;
+      }
+      .mini-grid {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        gap: 2px;
+      }
+      .mini-initial {
+        font-size: 10px;
+        line-height: 16px;
+        text-align: center;
+        color: #646d5b;
+        font-weight: 650;
+      }
+      .mini-day {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        aspect-ratio: 1;
+        padding: 0;
+        border: 0;
+        border-radius: 4px;
+        font-size: 10px;
+        line-height: 1;
+        font-weight: 500;
+        background: transparent;
+        color: #30382c;
+        min-width: 0;
+      }
+      .mini-day:hover {
+        box-shadow: inset 0 0 0 1px #566a56;
+        background-color: #e8ecdf;
+      }
+      .mini-day.in-week {
+        box-shadow: inset 0 0 0 1px #54674877;
+      }
+      .mini-day.is-today {
+        outline: 1px solid #3d5637;
+        outline-offset: 1px;
+        font-weight: 800;
+      }
+      .mini-day.has-event {
+        font-weight: 750;
+      }
+      .mini-day:focus-visible {
+        outline: 2px solid #875046;
+        outline-offset: 1px;
+      }
+      .mini-blank {
+        aspect-ratio: 1;
+      }
+      .mini-calendar .mini-scroll:focus-visible {
+        outline: 2px solid #566a56;
+      }
+      @media (max-width: 650px) {
+        .mini-calendar {
+          max-width: 100%;
+        }
+        .mini-month {
+          width: 146px;
+          flex-basis: 146px;
+          padding: 8px;
+        }
+        .mini-months {
+          gap: 9px;
+        }
+      }
+      @media print {
+        .mini-controls {
+          display: none;
+        }
+        .mini-scroll {
+          overflow: visible;
+        }
+        .mini-day {
+          print-color-adjust: exact;
+        }
+      }
+
+      /* Containment of native Safari date/time controls inside form grids. */
+      #eventform .sectioncontent,
+      #eventform .repeat,
+      #eventform .fields > label {
+        min-width: 0;
+        max-width: 100%;
+      }
+      #eventform input,
+      #eventform select,
+      #eventform textarea {
+        box-sizing: border-box;
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        margin: 0;
+      }
+      #eventform input[type="date"],
+      #eventform input[type="time"],
+      #eventform input[type="datetime-local"] {
+        -webkit-appearance: none;
+        appearance: none;
+        box-sizing: border-box;
+        inline-size: 100%;
+        min-inline-size: 0;
+        max-inline-size: 100%;
+        min-height: 46px;
+        text-align: left;
+      }
+      #eventform input::-webkit-date-and-time-value {
+        min-width: 0;
+        margin: 0;
+        text-align: left;
+      }
+      #eventform input::-webkit-datetime-edit {
+        min-width: 0;
+        padding: 0;
+      }
+      #eventform input::-webkit-datetime-edit-fields-wrapper {
+        padding: 0;
+      }
+      @media (max-width: 650px) {
+        #eventform .fields {
+          grid-template-columns: minmax(0, 1fr);
+        }
+      }
+      /* Secondary language preference, kept at the foot of the sidebar. */
+      .language-control {
+        display: flex;
+        margin: 12px 8px 0;
+      }
+      .language-control select {
+        width: auto;
+        min-width: 58px;
+        min-height: 36px;
+        margin: 0;
+        padding: 6px 8px;
+        border: 1px solid transparent;
+        background: transparent;
+        color: #616d58;
+        font-size: 12px;
+      }
+      .language-control select:hover {
+        border-color: #c7cebc;
+      }
+      @media (max-width: 650px) {
+        .sidebar .bottom {
+          flex-wrap: wrap;
+        }
+        .sidebar .bottom button {
+          width: auto;
+          flex: 1;
+        }
+        .language-control {
+          flex-basis: 100%;
+          justify-content: flex-end;
+          margin: 0;
+        }
+      }
+
+      /* Fit the complete 24-hour week in the viewport, including narrow phones. */
+      .schedule {
+        min-width: 0;
+        width: 100%;
+      }
+      .schedule-wrap {
+        overflow: hidden;
+        border-radius: 10px;
+      }
+      .days,
+      .grid {
+        grid-template-columns: 28px repeat(7, minmax(0, 1fr));
+      }
+      .days {
+        position: static;
+      }
+      .days div {
+        min-width: 0;
+        padding: 3px 0;
+        font-size: 10px;
+      }
+      .days b {
+        font-size: 13px;
+      }
+      .grid {
+        height: clamp(180px, calc(100vh - 360px), 720px);
+        height: clamp(180px, calc(100svh - 360px), 720px);
+      }
+      .daycol {
+        min-width: 0;
+        background: repeating-linear-gradient(
+          to bottom,
+          transparent 0,
+          transparent calc(100% / 24 - 1px),
+          #e7e8df calc(100% / 24 - 1px),
+          #e7e8df calc(100% / 24)
+        );
+      }
+      .timecol span {
+        left: 2px;
+        font-size: 9px;
+        line-height: 1;
+      }
+      .slot {
+        min-width: 0;
+        min-height: 0;
+        padding: 1px 2px;
+        border-radius: 3px;
+        font-size: 10px;
+        line-height: 1.1;
+        text-align: left;
+        overflow-wrap: anywhere;
+        display: block;
+      }
+      .slot strong {
+        font-size: 9px;
+      }
+      .schedule-toolbar {
+        margin-bottom: 5px;
+        gap: 6px;
+      }
+      .schedule-toolbar button {
+        padding: 4px 8px;
+        font-size: 12px;
+      }
+      .schedule-toolbar .weeklabel {
+        font-size: 12px;
+      }
+      .schedule-toolbar input {
+        margin: 0;
+        padding: 3px;
+        font-size: 12px;
+        max-width: 145px;
+        min-height: 30px;
+      }
+      .legend {
+        font-size: 10px;
+        margin: 5px 0;
+        gap: 12px;
+      }
+      .mini-calendar {
+        max-width: 100%;
+        width: 720px;
+        margin: 0 0 8px;
+      }
+      .mini-scroll {
+        scroll-snap-type: none;
+        overflow-anchor: none;
+      }
+      .mini-months {
+        gap: 8px;
+      }
+      .mini-month {
+        width: 120px;
+        flex-basis: 120px;
+        padding: 5px;
+        aspect-ratio: 1;
+      }
+      .mini-title {
+        font-size: 10px;
+        margin-bottom: 3px;
+      }
+      .mini-grid {
+        gap: 1px;
+      }
+      .mini-initial {
+        font-size: 9px;
+        line-height: 12px;
+      }
+      .mini-day {
+        font-size: 9px;
+      }
+      .agenda-view .top {
+        margin-bottom: 8px;
+      }
+      @media (max-width: 650px) {
+        .agenda-view .sidebar {
+          padding: 8px 12px;
+        }
+        .agenda-view .brand {
+          font-size: 21px;
+        }
+        .agenda-view .sidebar nav {
+          margin-top: 6px;
+        }
+        .agenda-view .sidebar nav button {
+          padding: 5px;
+          font-size: 12px;
+        }
+        .agenda-view .sidebar .bottom {
+          margin-top: 3px;
+        }
+        .agenda-view .sidebar .bottom button {
+          font-size: 10px;
+          padding: 3px;
+        }
+        .agenda-view .language-control select {
+          min-height: 24px;
+          padding: 1px 5px;
+          font-size: 10px;
+        }
+        .agenda-view .main {
+          padding: 10px 8px;
+        }
+        .agenda-view .eyebrow {
+          display: none;
+        }
+        .agenda-view h1 {
+          font-size: 20px;
+          margin: 0;
+        }
+        .agenda-view .top {
+          align-items: center;
+          gap: 6px;
+        }
+        .agenda-view .top .primary {
+          font-size: 10px;
+          padding: 6px;
+          white-space: nowrap;
+        }
+        .grid {
+          height: clamp(180px, calc(100vh - 420px), 600px);
+          height: clamp(180px, calc(100svh - 420px), 600px);
+        }
+        .slot {
+          font-size: 8px;
+          padding: 0 1px;
+        }
+        .slot strong {
+          font-size: 8px;
+        }
+        .schedule-toolbar .weeklabel {
+          order: 3;
+          width: 100%;
+          font-size: 11px;
+        }
+        .schedule-toolbar input {
+          margin-left: auto;
+          max-width: 125px;
+        }
+      }
+      @media print {
+        .grid {
+          height: 650px;
+        }
+        .mini-calendar {
+          display: none;
+        }
+      }
+      /* Shared Eigrutel signature, outside the dynamically rendered view. */
+      main.main { display: flex; flex-direction: column; }
+      .eigrutel-app-footer {
+        width: 100%;
+        margin-top: auto;
+        padding: 24px 16px 4px;
+        text-align: center;
+      }
+      .eigrutel-app-footer a {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        color: #1F3A44;
+        text-decoration: none;
+        opacity: .72;
+      }
+      .eigrutel-app-footer a:hover { opacity: 1; }
+      .sidebar #export, .sidebar #import { font-weight: 700; }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="brand">Dédicaces<small>EIGRUTEL LAB</small></div>
+        <nav>
+          <button data-nav="cards" class="active">
+            ▦ &nbsp; <span data-i18n>Mes dédicaces</span></button
+          ><button data-nav="week">
+            ▤ &nbsp; <span data-i18n>Emploi du temps</span>
+          </button>
+        </nav>
+        <div class="bottom">
+          <button id="import-event"><span data-i18n>Importer une fiche</span></button>
+          <button id="export">
+            <span data-i18n>Sauvegarder</span></button
+          ><button id="import"><span data-i18n>Charger</span></button
+          ><button id="info">
+            ⓘ &nbsp; <span data-i18n>Mode d’emploi</span>
+          </button>
+          <p>
+            <span data-i18n>Version autonome</span><br /><span data-i18n
+              >Données sur cet appareil.</span
+            >
+          </p>
+          <div class="language-control">
+            <select id="language" aria-label="Langue / Language">
+              <option value="fr">FR</option>
+              <option value="en">EN</option>
+            </select>
+          </div>
+        </div>
+      </aside>
+      <main class="main">
+        <div id="app">
+          <p><span data-i18n>Ouverture de l’agenda…</span></p>
+        </div>
+        <footer class="eigrutel-app-footer">
+          <a href="https://www.stripmee.com" target="_blank" rel="noopener noreferrer">Eigrutel BD Academy</a>
+        </footer>
+      </main>
+    </div>
+    <input type="file" id="importfile" accept="application/json,.json" hidden />
+    <input type="file" id="eventfile" accept="application/json,.json" hidden />
+    <dialog id="share-event">
+      <form method="dialog" class="help" id="share-form">
+        <h2><span data-i18n>Exporter cette fiche</span></h2>
+        <p><span data-i18n>Le fichier contient le festival, les contacts, les trajets, l’hôtel et les créneaux. Vérifiez ces informations personnelles avant de le transmettre.</span></p>
+        <label style="display:flex;gap:10px;align-items:center"><input style="width:auto;margin:0" type="checkbox" id="share-notes"><span data-i18n>Inclure mon post-it personnel</span></label>
+        <label style="display:flex;gap:10px;align-items:center;margin-top:12px"><input style="width:auto;margin:0" type="checkbox" id="share-files"><span data-i18n>Inclure les documents joints (billets, réservations…)</span></label>
+        <p class="subtle"><span data-i18n>Les autres fiches de votre agenda ne sont jamais incluses.</span></p>
+        <button type="button" id="share-cancel"><span data-i18n>Annuler</span></button>
+        <button type="submit" class="primary"><span data-i18n>Exporter la fiche JSON</span></button>
+      </form>
+    </dialog>
+    <dialog id="editor">
+      <form id="eventform">
+        <header>
+          <h2 id="formtitle">Nouvelle dédicace</h2>
+          <button type="button" id="close" aria-label="Fermer">✕</button>
+        </header>
+        <div class="formbody">
+          <section class="formsection" aria-labelledby="section-1">
+            <div class="sectionhead">
+              <h3 id="section-1">
+                <span class="sectionnum">01</span
+                ><span data-i18n>Festival & lieu</span>
+              </h3>
+            </div>
+            <div class="sectioncontent">
+              <div class="fields">
+                <label class="full"
+                  ><span data-i18n>Nom de la dédicace</span
+                  ><input
+                    name="title"
+                    required
+                    maxlength="160"
+                    placeholder="Festival, librairie…" /></label
+                ><label
+                  ><span data-i18n>Premier jour</span
+                  ><input name="start" type="date" required /></label
+                ><label
+                  ><span data-i18n>Dernier jour</span
+                  ><input name="end" type="date" required /></label
+                ><label
+                  ><span data-i18n>Lieu</span
+                  ><input name="venue" placeholder="Nom du lieu" /></label
+                ><label><span data-i18n>Ville</span><input name="city" /></label
+                ><label class="full"
+                  ><span data-i18n>Adresse</span><input name="address" /></label
+                ><label class="full"
+                  ><span data-i18n>Site du festival / de la dédicace</span
+                  ><input
+                    name="website"
+                    type="text"
+                    inputmode="url"
+                    autocapitalize="none"
+                    spellcheck="false"
+                    placeholder="https://www.festival.fr" /></label
+                ><label
+                  ><span data-i18n>Statut</span
+                  ><select name="status">
+                    <option value="À confirmer" data-i18n>À confirmer</option>
+                    <option value="Confirmée" data-i18n>Confirmée</option>
+                    <option value="Annulée" data-i18n>Annulée</option>
+                  </select></label
+                >
+              </div>
+            </div>
+          </section>
+          <section class="formsection" aria-labelledby="section-2">
+            <div class="sectionhead">
+              <h3 id="section-2">
+                <span class="sectionnum">02</span><span data-i18n>Contact</span>
+              </h3>
+            </div>
+            <div class="sectioncontent">
+              <div class="fields">
+                <label class="full"
+                  ><span data-i18n>Nom / organisation</span
+                  ><input name="contact" /></label
+                ><label
+                  ><span data-i18n>Adresse e-mail</span
+                  ><input name="email" type="email" /></label
+                ><label
+                  ><span data-i18n>Téléphone</span
+                  ><input name="phone" type="tel"
+                /></label>
+              </div>
+            </div>
+          </section>
+          <section class="formsection" aria-labelledby="section-3">
+            <div class="sectionhead">
+              <h3 id="section-3">
+                <span class="sectionnum">03</span
+                ><span data-i18n>Transports & billets</span>
+              </h3>
+              <button type="button" id="addtrip">
+                <span data-i18n>+ Trajet</span>
+              </button>
+            </div>
+            <div class="sectioncontent">
+              <div id="trips"></div>
+              <p class="subtle">
+                <span data-i18n
+                  >Un trajet pour l’aller, un autre pour le retour ou chaque
+                  correspondance.</span
+                >
+              </p>
+            </div>
+          </section>
+          <section class="formsection" aria-labelledby="section-4">
+            <div class="sectionhead">
+              <h3 id="section-4">
+                <span class="sectionnum">04</span><span data-i18n>Hôtel</span>
+              </h3>
+            </div>
+            <div class="sectioncontent">
+              <div class="fields">
+                <label class="full"
+                  ><span data-i18n>Nom</span><input name="hotel" /></label
+                ><label class="full"
+                  ><span data-i18n>Adresse</span
+                  ><input name="hotelAddress" /></label
+                ><label
+                  ><span data-i18n>Arrivée</span
+                  ><input type="date" name="hotelIn" /></label
+                ><label
+                  ><span data-i18n>Départ</span
+                  ><input type="date" name="hotelOut" /></label
+                ><label
+                  ><span data-i18n>Téléphone</span
+                  ><input name="hotelPhone" type="tel" /></label
+                ><label
+                  ><span data-i18n>Référence de réservation</span
+                  ><input name="hotelRef"
+                /></label>
+              </div>
+            </div>
+          </section>
+          <section class="formsection" aria-labelledby="section-5">
+            <div class="sectionhead">
+              <h3 id="section-5">
+                <span class="sectionnum">05</span
+                ><span data-i18n>Créneaux de dédicace</span>
+              </h3>
+              <button type="button" id="addslot">
+                <span data-i18n>+ Créneau</span>
+              </button>
+            </div>
+            <div class="sectioncontent"><div id="slots"></div></div>
+          </section>
+          <section class="formsection" aria-labelledby="section-6">
+            <div class="sectionhead">
+              <h3 id="section-6">
+                <span class="sectionnum">06</span
+                ><span data-i18n>Documents</span>
+              </h3>
+            </div>
+            <div class="sectioncontent">
+              <label
+                ><span data-i18n>Billets, réservation d’hôtel, programme</span
+                ><input
+                  type="file"
+                  id="attachments"
+                  multiple
+                  accept="application/pdf,image/jpeg,image/png,image/webp"
+              /></label>
+              <p class="subtle">
+                <span data-i18n
+                  >PDF ou images, 10 Mo maximum par fichier. Inclus dans la
+                  sauvegarde.</span
+                >
+              </p>
+              <div id="files" class="filelist"></div>
+            </div>
+          </section>
+          <section class="formsection" aria-labelledby="section-7">
+            <div class="sectionhead">
+              <h3 id="section-7">
+                <span class="sectionnum">07</span
+                ><span data-i18n>Retour d’expérience</span>
+              </h3>
+            </div>
+            <div class="sectioncontent">
+              <div class="postit">
+                <label
+                  ><span data-i18n>Mon post-it</span
+                  ><textarea
+                    name="notes"
+                    placeholder="Accueil, organisation, public… Ce que je veux retenir avant de revenir."
+                  ></textarea>
+                </label>
+              </div>
+            </div>
+          </section>
+        </div>
+        <footer>
+          <button type="button" id="cancel">
+            <span data-i18n>Annuler</span></button
+          ><button class="primary" id="save">
+            <span data-i18n>Enregistrer</span>
+          </button>
+        </footer>
+      </form>
+    </dialog>
+    <dialog id="help">
+      <div class="help">
+        <h2><span data-i18n>Votre agenda de dédicaces</span></h2>
+        <p>
+          <span data-i18n
+            >Créez une carte pour chaque festival ou déplacement. Ajoutez les
+            contacts, l’hôtel, les trajets et autant de créneaux que
+            nécessaire.</span
+          >
+        </p>
+        <p>
+          <span data-i18n
+            >L’emploi du temps présente les dédicaces en rouge et les transports
+            en bleu. Touchez un bloc pour ouvrir sa fiche. La semaine complète
+            et les 24 heures tiennent dans une grille compacte, sur mobile
+            également. Les petits calendriers défilants indiquent les jours de
+            dédicace dans la couleur de chaque fiche, du premier au dernier
+            jour. Faites glisser les mois sans limite de trois mois, ou utilisez
+            les flèches ; un clic sur un jour affiche sa semaine. Plusieurs
+            dédicaces le même jour partagent la couleur de la case. Les
+            dédicaces annulées ne sont pas colorées.</span
+          >
+        </p>
+        <p>
+          <span data-i18n
+            >Dans Modifier, le post-it conserve vos remarques personnelles.
+            Renseignez le site du festival dans Festival & lieu pour y accéder
+            depuis sa fiche.</span
+          >
+        </p>
+        <h3><span data-i18n>Partager une fiche</span></h3>
+        <p><span data-i18n>Ouvrez une fiche puis choisissez « Exporter cette fiche ». Transmettez le fichier JSON à votre collègue, qui utilisera « Importer une fiche ». L’import ajoute une copie indépendante sans remplacer l’agenda. Post-it et documents joints sont facultatifs à l’export. Les contacts, trajets et informations d’hôtel sont inclus : vérifiez-les avant de partager.</span></p>
+        <h3><span data-i18n>Conserver vos informations</span></h3>
+        <p>
+          <span data-i18n
+            >Le HTML contient le programme et fonctionne sans compte ni serveur.
+            Conservez le dossier favicon à côté du HTML pour afficher l’icône de
+            l’onglet. La sauvegarde est automatique dans ce navigateur lorsque
+            celui-ci autorise le stockage des fichiers locaux, y compris pour
+            les documents. Sinon, un bandeau vous invite à sauvegarder
+            manuellement avant de fermer. Il n’y a pas de synchronisation entre
+            appareils. « Sauvegarder » télécharge un fichier contenant tout
+            votre agenda ; « Charger » le restaure en remplaçant les données
+            présentes, après confirmation.</span
+          >
+        </p>
+        <p>
+          <span data-i18n
+            >Gardez une sauvegarde JSON avant de déplacer ou renommer le HTML,
+            de changer de navigateur ou d’effacer ses données. Le HTML contient
+            le programme, le JSON contient votre agenda et les documents joints.
+            Les données saisies ne sont envoyées à aucun service. Les liens vers
+            un site de festival, une carte, un e-mail ou un numéro de téléphone
+            ouvrent le service correspondant uniquement à votre demande.</span
+          >
+        </p>
+        <p class="subtle">
+          <span data-i18n>Dédicaces 1.0.0 autonome · Eigrutel Lab</span
+          ><br /><span data-i18n
+            >Code GNU AGPL v3.0+ · Documentation CC BY-SA 4.0</span
+          >
+        </p>
+        <button onclick="document.getElementById('help').close()">
+          <span data-i18n>Fermer</span>
+        </button>
+      </div>
+    </dialog>
+    <div id="toast" role="status"></div>
+    <script>
+      "use strict";
+
+      // Release metadata is independent of the JSON schema (version 1).
+      const APP_VERSION = "1.0.0";
+      let lang = "fr";
+      try {
+        lang =
+          localStorage.getItem("eigrutel-dedicaces-language") === "en"
+            ? "en"
+            : "fr";
+      } catch {
+        /* Local files may deny preference storage. */
+      }
+      const EN = {
+        "Partager une fiche": "Share an event",
+        "Ouvrez une fiche puis choisissez « Exporter cette fiche ». Transmettez le fichier JSON à votre collègue, qui utilisera « Importer une fiche ». L’import ajoute une copie indépendante sans remplacer l’agenda. Post-it et documents joints sont facultatifs à l’export. Les contacts, trajets et informations d’hôtel sont inclus : vérifiez-les avant de partager.": "Open an event and choose Export this event. Send the JSON file to your colleague, who can choose Import an event. Import adds an independent copy without replacing the planner. Sticky notes and attachments are optional. Contacts, travel and hotel information are included: check them before sharing.",
+        "Importer une fiche": "Import an event",
+        "Exporter cette fiche": "Export this event",
+        "Le fichier contient le festival, les contacts, les trajets, l’hôtel et les créneaux. Vérifiez ces informations personnelles avant de le transmettre.": "The file contains the festival, contacts, travel, hotel and sessions. Check this personal information before sharing it.",
+        "Inclure mon post-it personnel": "Include my personal sticky note",
+        "Inclure les documents joints (billets, réservations…)": "Include attachments (tickets, bookings…)",
+        "Les autres fiches de votre agenda ne sont jamais incluses.": "Other events in your planner are never included.",
+        "Exporter la fiche JSON": "Export event JSON",
+        "Fiche exportée. Vous pouvez transmettre le fichier JSON à votre collègue.": "Event exported. You can send the JSON file to your colleague.",
+        "Fiche ajoutée à votre agenda. Les autres dédicaces sont conservées.": "Event added to your planner. Other signings are unchanged.",
+        "Import impossible : la fiche est invalide ou le stockage est indisponible. Votre agenda est conservé.": "Unable to import: invalid event or unavailable storage. Your planner is unchanged.",
+        "Calendrier défilant des dédicaces": "Scrolling signing calendar",
+        "Mes dédicaces": "My signings",
+        "Emploi du temps": "Timetable",
+        Sauvegarder: "Back up",
+        Charger: "Restore",
+        "Mode d’emploi": "Help",
+        "Version autonome": "Standalone version",
+        "Données sur cet appareil.": "Data on this device.",
+        "Ouverture de l’agenda…": "Opening your planner…",
+        "Nouvelle dédicace": "New signing",
+        "Modifier la dédicace": "Edit signing",
+        Fermer: "Close",
+        "Festival & lieu": "Festival & venue",
+        "Nom de la dédicace": "Signing name",
+        "Premier jour": "First day",
+        "Dernier jour": "Last day",
+        Lieu: "Venue",
+        Ville: "City",
+        Adresse: "Address",
+        "Site du festival / de la dédicace": "Festival / signing website",
+        "Site du festival / de la dédicace ↗": "Festival / signing website ↗",
+        Statut: "Status",
+        "À confirmer": "To be confirmed",
+        Confirmée: "Confirmed",
+        Annulée: "Cancelled",
+        Contact: "Contact",
+        "Nom / organisation": "Name / organisation",
+        "Adresse e-mail": "Email address",
+        Téléphone: "Phone",
+        "Transports & billets": "Travel & tickets",
+        "+ Trajet": "+ Journey",
+        "Un trajet pour l’aller, un autre pour le retour ou chaque correspondance.":
+          "Add a journey for each outbound, return or connecting leg.",
+        Hôtel: "Hotel",
+        Nom: "Name",
+        Arrivée: "Arrival",
+        Départ: "Departure",
+        "Référence de réservation": "Booking reference",
+        "Créneaux de dédicace": "Signing sessions",
+        "+ Créneau": "+ Session",
+        Documents: "Documents",
+        "Billets, réservation d’hôtel, programme":
+          "Tickets, hotel booking, programme",
+        "PDF ou images, 10 Mo maximum par fichier. Inclus dans la sauvegarde.":
+          "PDFs or images, up to 10 MB per file. Included in your backup.",
+        "Retour d’expérience": "Personal feedback",
+        "Mon post-it": "My sticky note",
+        Annuler: "Cancel",
+        Enregistrer: "Save",
+        "Votre agenda de dédicaces": "Your signing planner",
+        "Conserver vos informations": "Keeping your information",
+        "Dédicaces 1.0.0 autonome · Eigrutel Lab":
+          "Dédicaces 1.0.0 standalone · Eigrutel Lab",
+        "Code GNU AGPL v3.0+ · Documentation CC BY-SA 4.0":
+          "Code GNU AGPL v3.0+ · Documentation CC BY-SA 4.0",
+        "Adresse à préciser": "Address to be confirmed",
+        "À préciser": "To be confirmed",
+        "Mois en cours": "Current month",
+        "Mon agenda": "My planner",
+        "+ Nouvelle dédicace": "+ New signing",
+        "À venir": "Upcoming",
+        Passées: "Past",
+        Toutes: "All",
+        "Lieu à préciser": "Venue to be confirmed",
+        "Post-it disponible": "Sticky note available",
+        "Ouvrir ↗": "Open ↗",
+        "Aucune dédicace dans cette vue": "No signings in this view",
+        "Votre prochaine rencontre commence ici":
+          "Your next encounter starts here",
+        "Retrouvez vos autres dédicaces dans « Toutes ».":
+          "Find your other signings under “All”.",
+        "Rassemblez les informations de vos déplacements et gardez votre programme à portée de main.":
+          "Keep your travel information together and your programme close at hand.",
+        "+ Ajouter une dédicace": "+ Add a signing",
+        "Essayer avec un exemple": "Try an example",
+        "Aujourd’hui": "Today",
+        Transports: "Travel",
+        "‹ Retour à l’agenda": "‹ Back to planner",
+        Imprimer: "Print",
+        Modifier: "Edit",
+        Supprimer: "Delete",
+        "Contact à préciser": "Contact to be confirmed",
+        "Aucun hôtel renseigné.": "No hotel entered.",
+        "Aucun trajet renseigné.": "No journey entered.",
+        "Aucun document joint.": "No documents attached.",
+        "Mon retour d’expérience": "My feedback",
+        "Ajoutez votre post-it dans Modifier.":
+          "Add your sticky note using Edit.",
+        "Programme du déplacement": "Trip programme",
+        "Ajoutez vos créneaux avec le bouton Modifier.":
+          "Add your sessions using the Edit button.",
+        "Supprimer cette dédicace et ses documents ?":
+          "Delete this signing and its documents?",
+        "Dédicace supprimée.": "Signing deleted.",
+        "Suppression impossible. Réessayez.":
+          "Unable to delete. Please try again.",
+        Transport: "Transport",
+        Train: "Train",
+        Avion: "Plane",
+        Voiture: "Car",
+        Bus: "Bus",
+        Taxi: "Taxi",
+        Autre: "Other",
+        "N° de billet / réservation / siège": "Ticket / booking / seat number",
+        "Lieu de départ": "Departure point",
+        "Lieu d’arrivée": "Arrival point",
+        "Retirer ce trajet": "Remove journey",
+        Date: "Date",
+        "Intitulé / stand": "Title / stand",
+        Dédicace: "Signing",
+        Début: "Start",
+        Fin: "End",
+        "Retirer ce créneau": "Remove session",
+        "Document refusé : utilisez un PDF ou une image de moins de 10 Mo.":
+          "File rejected: use a PDF or image no larger than 10 MB.",
+        "Ce document n’a pas pu être lu.": "This file could not be read.",
+        "Indiquez le nom de la dédicace.": "Enter a signing name.",
+        "Indiquez une adresse de site valide, en http ou https.":
+          "Enter a valid http or https website address.",
+        "Le dernier jour doit suivre le premier.":
+          "The last day must not be before the first.",
+        "Vérifiez les dates de l’hôtel.": "Check the hotel dates.",
+        "Chaque arrivée doit suivre le départ.":
+          "Each arrival must be after its departure.",
+        "Chaque créneau doit être compris dans les jours de dédicace, avec une fin après le début.":
+          "Each session must fall within the signing dates and end after it starts.",
+        "Dédicace ajoutée à la session. Pensez à Sauvegarder avant de fermer.":
+          "Signing added to this session. Back up before closing.",
+        "Dédicace enregistrée sur cet appareil.":
+          "Signing saved on this device.",
+        "Sauvegarde impossible. L’espace disponible est peut-être insuffisant. Exportez vos données.":
+          "Unable to save. Storage may be full. Export your data.",
+        "Sauvegarde préparée. Conservez le fichier JSON téléchargé.":
+          "Backup prepared. Keep the downloaded JSON file.",
+        "Agenda chargé.": "Planner restored.",
+        "Chargement impossible : fichier invalide ou espace disponible insuffisant. Votre agenda est conservé.":
+          "Unable to restore: invalid file or insufficient storage. Your planner is unchanged.",
+        "Exemple fictif ajouté.": "Fictional example added.",
+        "Impossible d’enregistrer l’exemple.": "Unable to save the example.",
+        "Fermer sans enregistrer les modifications ?":
+          "Close without saving changes?",
+        "Mois précédent": "Previous month",
+        "Mois suivant": "Next month",
+        "Mois, défilement horizontal continu":
+          "Months, continuous horizontal scrolling",
+        "Mini-calendrier des dédicaces": "Signing mini-calendar",
+        "Semaine précédente": "Previous week",
+        "Semaine suivante": "Next week",
+        "Aller à une date": "Go to a date",
+        "Festival, librairie…": "Festival, bookshop…",
+        "Nom du lieu": "Venue name",
+        "Accueil, organisation, public… Ce que je veux retenir avant de revenir.":
+          "Welcome, organisation, audience… What I want to remember before coming back.",
+        "Festival BD · Exemple": "Comics festival · Example",
+        "Maison du livre": "Book centre",
+        "Ville exemple": "Example town",
+        "Organisation du festival": "Festival organisers",
+        "Hôtel à confirmer": "Hotel to be confirmed",
+        "Fiche fictive pour essayer l’agenda. Modifiez-la ou supprimez-la.":
+          "Fictional entry to try the planner. Edit or delete it.",
+        "Billet à réserver": "Ticket to book",
+        "Gare de départ": "Departure station",
+        "Gare du festival": "Festival station",
+        "Dédicace du matin": "Morning signing",
+        "Dédicace de l’après-midi": "Afternoon signing",
+        "Créez une carte pour chaque festival ou déplacement. Ajoutez les contacts, l’hôtel, les trajets et autant de créneaux que nécessaire.":
+          "Create a card for each festival or trip. Add contacts, your hotel, journeys and as many signing sessions as you need.",
+        "L’emploi du temps présente les dédicaces en rouge et les transports en bleu. Touchez un bloc pour ouvrir sa fiche. La semaine complète et les 24 heures tiennent dans une grille compacte, sur mobile également. Les petits calendriers défilants indiquent les jours de dédicace dans la couleur de chaque fiche, du premier au dernier jour. Faites glisser les mois sans limite de trois mois, ou utilisez les flèches ; un clic sur un jour affiche sa semaine. Plusieurs dédicaces le même jour partagent la couleur de la case. Les dédicaces annulées ne sont pas colorées.":
+          "The timetable shows signings in red and travel in blue. Tap a block to open its card. The full week and all 24 hours fit in a compact grid, including on mobile. The scrolling small calendars mark signing dates using each card’s colour, from the first day to the last. Swipe through months beyond the initial range, or use the arrows; select a day to show its week. Multiple signings on the same day share the cell’s colour. Cancelled signings are not highlighted.",
+        "Dans Modifier, le post-it conserve vos remarques personnelles. Renseignez le site du festival dans Festival & lieu pour y accéder depuis sa fiche.":
+          "Use the sticky note under Edit to keep personal remarks. Enter the festival website under Festival & venue to access it from the card.",
+        "Le HTML contient le programme et fonctionne sans compte ni serveur. Conservez le dossier favicon à côté du HTML pour afficher l’icône de l’onglet. La sauvegarde est automatique dans ce navigateur lorsque celui-ci autorise le stockage des fichiers locaux, y compris pour les documents. Sinon, un bandeau vous invite à sauvegarder manuellement avant de fermer. Il n’y a pas de synchronisation entre appareils. « Sauvegarder » télécharge un fichier contenant tout votre agenda ; « Charger » le restaure en remplaçant les données présentes, après confirmation.":
+          "The HTML contains the application and works without an account or server. Keep the favicon folder beside it to display the tab icon. Your planner, including documents, is saved automatically when the browser allows local file storage. Otherwise, a banner reminds you to back up manually before closing. Devices are not synchronised. “Back up” downloads your whole planner; “Restore” replaces current data with that backup after confirmation.",
+        "Gardez une sauvegarde JSON avant de déplacer ou renommer le HTML, de changer de navigateur ou d’effacer ses données. Le HTML contient le programme, le JSON contient votre agenda et les documents joints. Les données saisies ne sont envoyées à aucun service. Les liens vers un site de festival, une carte, un e-mail ou un numéro de téléphone ouvrent le service correspondant uniquement à votre demande.":
+          "Keep a JSON backup before moving or renaming the HTML, switching browsers or clearing browser data. The HTML contains the application; the JSON contains your planner and attachments. Entered data is not sent to any service. Festival websites, maps, email and phone links open their respective services only when you select them.",
+        "Ce navigateur ne permet pas la sauvegarde automatique de ce fichier local. Vous pouvez utiliser l’agenda, mais téléchargez votre sauvegarde JSON avant de fermer. Au prochain lancement, utilisez Charger.":
+          "This browser cannot automatically save this local file’s data. You can use the planner, but download a JSON backup before closing. Use Restore next time you open it.",
+      };
+      function translate(text) {
+        return lang === "en" ? (EN[text] ?? text) : text;
+      }
+      const locale = () => (lang === "en" ? "en-GB" : "fr-FR");
+      const rangeJoin = () => (lang === "en" ? " to " : " au ");
+      function countLabel(n, frOne, frMany, enOne, enMany) {
+        return (
+          n +
+          " " +
+          (lang === "en" ? (n === 1 ? enOne : enMany) : n > 1 ? frMany : frOne)
+        );
+      }
+      function ask(message) {
+        return window.confirm(translate(message));
+      }
+      // Only explicitly marked interface text is translated. User data never gets markers.
+      // WeakMaps retain the original labels without modifying form values or JSON data.
+      const sourceLabels = new WeakMap();
+      const sourceAttributes = new WeakMap();
+      function applyLanguage() {
+        document.documentElement.lang = lang;
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          if (!sourceLabels.has(el))
+            sourceLabels.set(el, el.textContent.replace(/\s+/g, " ").trim());
+          const value = translate(sourceLabels.get(el));
+          if (el.textContent !== value) el.textContent = value;
+        });
+        document
+          .querySelectorAll("[aria-label], [placeholder]")
+          .forEach((el) => {
+            if (!sourceAttributes.has(el)) {
+              const attrs = {};
+              for (const name of ["aria-label", "placeholder"]) {
+                const value = el.getAttribute(name);
+                if (Object.hasOwn(EN, value)) attrs[name] = value;
+              }
+              sourceAttributes.set(el, attrs);
+            }
+            for (const [name, value] of Object.entries(
+              sourceAttributes.get(el),
+            )) {
+              const translated = translate(value);
+              if (el.getAttribute(name) !== translated)
+                el.setAttribute(name, translated);
+            }
+          });
+      }
+      // Templates are inserted dynamically; the observer localises only their UI markers.
+      new MutationObserver(applyLanguage).observe(document.body, {
+        childList: true,
+        subtree: true,
+      });
+      document.getElementById("language").value = lang;
+      document
+        .getElementById("language")
+        .addEventListener("change", (event) => {
+          lang = event.target.value;
+          try {
+            localStorage.setItem("eigrutel-dedicaces-language", lang);
+          } catch {
+            /* Preference remains valid for this session. */
+          }
+          render();
+          applyLanguage();
+        });
+      applyLanguage();
+
+      // DOM helpers, HTML escaping and local calendar dates (no UTC date shifts).
+      const $ = (s) => document.querySelector(s),
+        esc = (s) =>
+          String(s ?? "").replace(
+            /[&<>"']/g,
+            (c) =>
+              ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;",
+              })[c],
+          ),
+        uid = () =>
+          globalThis.crypto?.randomUUID?.() ||
+          "ded-" +
+            Date.now().toString(36) +
+            "-" +
+            Math.random().toString(36).slice(2),
+        localDate = (d) =>
+          `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`,
+        today = () => localDate(new Date()),
+        date = (s) => new Date(s + "T12:00:00"),
+        fmt = (s, opt = { day: "numeric", month: "long" }) =>
+          s
+            ? date(s).toLocaleDateString(locale(), opt)
+            : translate("À préciser"),
+        addDays = (s, n) => {
+          let d = date(s);
+          d.setDate(d.getDate() + n);
+          return localDate(d);
+        },
+        monday = (s) => addDays(s, -((date(s).getDay() + 6) % 7)),
+        dt = (s) =>
+          s
+            ? new Date(s).toLocaleString(locale(), {
+                day: "numeric",
+                month: "short",
+                hour: "2-digit",
+                minute: "2-digit",
+              })
+            : translate("À préciser");
+
+      // Application state. Draft edits remain separate until Save succeeds.
+      let events = [],
+        db,
+        view = "cards",
+        filter = "upcoming",
+        selected = null,
+        week = monday(today()),
+        draft = null,
+        busyFiles = 0,
+        timer,
+        memoryOnly = false,
+        unsaved = false,
+        miniMonth = today().slice(0, 7) + "-01";
+
+      // Balanced pastel assignments persist with each card and survive imports.
+      const cardPalette = [
+        "#e9ba9c",
+        "#d5aaa2",
+        "#becbaa",
+        "#c3d4d0",
+        "#ddd099",
+        "#cec3d8",
+        "#d7c5ad",
+        "#bdd0de",
+      ];
+      function colorHash(id) {
+        let h = 2166136261;
+        for (const c of String(id))
+          h = Math.imul(h ^ c.charCodeAt(0), 16777619);
+        return h >>> 0;
+      }
+      function validTone(t) {
+        return Number.isInteger(t) && t >= 0 && t < cardPalette.length;
+      }
+      function withColors(list) {
+        const used = Array(cardPalette.length).fill(0);
+        list.forEach((e) => {
+          if (validTone(e.colorTone)) used[e.colorTone]++;
+        });
+        return list.map((e) => {
+          if (validTone(e.colorTone)) return e;
+          const min = Math.min(...used),
+            options = used.flatMap((n, i) => (n === min ? [i] : [])),
+            t = options[colorHash(e.id) % options.length];
+          used[t]++;
+          return { ...e, colorTone: t };
+        });
+      }
+      function cardColor(e) {
+        return cardPalette[
+          validTone(e.colorTone)
+            ? e.colorTone
+            : colorHash(e.id) % cardPalette.length
+        ];
+      }
+      function toast(s) {
+        $("#toast").textContent = translate(s);
+        clearTimeout(timer);
+        timer = setTimeout(() => ($("#toast").textContent = ""), 6000);
+      }
+
+      // Open the original database name and key to preserve pre-release agendas.
+      async function init() {
+        try {
+          db = await new Promise((res, rej) => {
+            const r = indexedDB.open("eigrutel-dedicaces", 1);
+            r.onupgradeneeded = () => r.result.createObjectStore("agenda");
+            r.onsuccess = () => res(r.result);
+            r.onerror = () => rej(r.error);
+          });
+          events = await new Promise((res, rej) => {
+            let r = db
+              .transaction("agenda")
+              .objectStore("agenda")
+              .get("events");
+            r.onsuccess = () => res(r.result || []);
+            r.onerror = () => rej(r.error);
+          });
+          render();
+        } catch (e) {
+          db = null;
+          memoryOnly = true;
+          render();
+          document
+            .querySelector(".main")
+            .insertAdjacentHTML(
+              "beforebegin",
+              '<div id="storage-warning" class="notice" role="alert" style="grid-column:1/-1;margin:12px"><span data-i18n>Ce navigateur ne permet pas la sauvegarde automatique de ce fichier local. Vous pouvez utiliser l’agenda, mais téléchargez votre sauvegarde JSON avant de fermer. Au prochain lancement, utilisez Charger.</span></div>',
+            );
+        }
+      }
+
+      // Update visible state only once the IndexedDB transaction commits.
+      async function persist(next) {
+        next = withColors(next);
+        if (memoryOnly) {
+          events = next;
+          unsaved = true;
+          return;
+        }
+        await new Promise((res, rej) => {
+          let t = db.transaction("agenda", "readwrite");
+          t.objectStore("agenda").put(next, "events");
+          t.oncomplete = res;
+          t.onerror = () => rej(t.error);
+          t.onabort = () => rej(t.error);
+        });
+        events = next;
+        unsaved = true;
+      }
+      function linkAddress(s) {
+        return s
+          ? /* HTML */ `<a
+              target="_blank"
+              rel="noopener"
+              href="https://www.openstreetmap.org/search?query=${encodeURIComponent(s)}"
+              >${esc(s)} ↗</a
+            >`
+          : '<span class="subtle"><span data-i18n>Adresse à préciser</span></span>';
+      }
+
+      // Allow only HTTP(S) URLs; reject credentials and executable schemes.
+      function websiteURL(value) {
+        if (typeof value !== "string" || !value.trim()) return "";
+        let v = value.trim();
+        if (!/^[a-z][a-z0-9+.-]*:/i.test(v)) v = "https://" + v;
+        try {
+          const u = new URL(v);
+          return ["http:", "https:"].includes(u.protocol) &&
+            u.hostname &&
+            !u.username &&
+            !u.password
+            ? u.href
+            : "";
+        } catch {
+          return "";
+        }
+      }
+      function festivalLink(value) {
+        const url = websiteURL(value);
+        return url
+          ? /* HTML */ `<p style="margin-top:12px">
+              <a href="${esc(url)}" target="_blank" rel="noopener noreferrer"
+                ><span data-i18n>Site du festival / de la dédicace ↗</span></a
+              >
+            </p>`
+          : "";
+      }
+      function phone(s) {
+        return s
+          ? /* HTML */ `<a href="tel:${esc(s.replace(/[^+0-9]/g, ""))}"
+              >${esc(s)}</a
+            >`
+          : "";
+      }
+
+      // Continuous month strip, Monday first; months are added at either scroll edge.
+      function shiftMonth(first, offset) {
+        const d = date(first);
+        d.setDate(1);
+        d.setMonth(d.getMonth() + offset);
+        return localDate(d);
+      }
+      function miniCalendar() {
+        return /* HTML */ `<section
+          class="mini-calendar"
+          aria-label="Calendrier défilant des dédicaces"
+        >
+          <div class="mini-controls">
+            <button
+              type="button"
+              data-mini-shift="-1"
+              aria-label="Mois précédent"
+            >
+              ‹</button
+            ><button
+              type="button"
+              data-mini-shift="1"
+              aria-label="Mois suivant"
+            >
+              ›</button
+            ><button type="button" class="mini-current" id="mini-current">
+              <span data-i18n>Mois en cours</span>
+            </button>
+          </div>
+          <div
+            class="mini-scroll"
+            tabindex="0"
+            aria-label="Mois, défilement horizontal continu"
+          >
+            <div class="mini-months">
+              ${Array.from({ length: 12 }, (_, i) => i - 3)
+                .map((offset) => miniMonthHTML(shiftMonth(miniMonth, offset)))
+                .join("")}
+            </div>
+          </div>
+        </section>`;
+      }
+      function miniMonthHTML(first) {
+        const next = shiftMonth(first, 1),
+          count = date(addDays(next, -1)).getDate(),
+          offset = (date(first).getDay() + 6) % 7;
+        const initial =
+            lang === "en"
+              ? ["M", "T", "W", "T", "F", "S", "S"]
+              : ["L", "M", "M", "J", "V", "S", "D"],
+          names =
+            lang === "en"
+              ? [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                  "Saturday",
+                  "Sunday",
+                ]
+              : [
+                  "Lundi",
+                  "Mardi",
+                  "Mercredi",
+                  "Jeudi",
+                  "Vendredi",
+                  "Samedi",
+                  "Dimanche",
+                ];
+        let cells = Array.from(
+          { length: offset },
+          () => '<span class="mini-blank" aria-hidden="true"></span>',
+        );
+        for (let i = 1; i <= count; i++) {
+          const day = first.slice(0, 8) + String(i).padStart(2, "0");
+          const matches = events.filter(
+            (e) => e.status !== "Annulée" && e.start <= day && e.end >= day,
+          );
+          const colors = [...new Set(matches.map(cardColor))];
+          const bg =
+            colors.length === 1
+              ? colors[0]
+              : colors.length > 1
+                ? "linear-gradient(135deg," +
+                  colors
+                    .map(
+                      (c, j) =>
+                        c +
+                        " " +
+                        (j * 100) / colors.length +
+                        "% " +
+                        ((j + 1) * 100) / colors.length +
+                        "%",
+                    )
+                    .join(",") +
+                  ")"
+                : "";
+          const label =
+            fmt(day, {
+              weekday: "long",
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            }) +
+            (matches.length
+              ? " : " + matches.map((e) => e.title).join(" ; ")
+              : "");
+          cells.push(
+            /* HTML */ `<button
+              type="button"
+              class="mini-day${matches.length ? " has-event" : ""}${day === today() ? " is-today" : ""}${day >= week && day <= addDays(week, 6) ? " in-week" : ""}"
+              data-mini-date="${day}"
+              ${bg ? `style="background:${bg}"` : ""}
+              ${day === today() ? 'aria-current="date"' : ""}
+              aria-label="${esc(label)}"
+              title="${esc(label)}"
+            >
+              ${i}
+            </button>`,
+          );
+        }
+        while (cells.length < 42)
+          cells.push('<span class="mini-blank" aria-hidden="true"></span>');
+        return /* HTML */ `<div class="mini-month" data-month="${first}">
+          <h2 class="mini-title">
+            ${fmt(first, { month: "long", year: "numeric" })}
+          </h2>
+          <div class="mini-grid">
+            ${initial.map((v, i) => /* HTML */ `<span class="mini-initial" aria-label="${names[i]}">${v}</span>`).join("")}${cells.join("")}
+          </div>
+        </div>`;
+      }
+      function syncMiniMonth() {
+        if (week < miniMonth || week >= shiftMonth(miniMonth, 3))
+          miniMonth = week.slice(0, 7) + "-01";
+      }
+
+      // Main navigation and card overview.
+      function render() {
+        document.body.classList.toggle(
+          "agenda-view",
+          view === "week" && !selected,
+        );
+        events = withColors(events);
+        document
+          .querySelectorAll("[data-nav]")
+          .forEach((b) => b.classList.toggle("active", b.dataset.nav === view));
+        if (selected) {
+          renderDetail();
+          return;
+        }
+        $("#app").innerHTML = /* HTML */ `<div class="top">
+            <div>
+              <div class="eyebrow"><span data-i18n>Mon agenda</span></div>
+              <h1>
+                ${view === "cards" ? translate("Mes dédicaces") : translate("Emploi du temps")}
+              </h1>
+            </div>
+            <button class="primary" id="new">
+              <span data-i18n>+ Nouvelle dédicace</span>
+            </button>
+          </div>
+          ${view === "cards" ? cards() : miniCalendar() + schedule(events)}`;
+        $("#new").onclick = () => edit();
+        bindContent();
+      }
+      function cards() {
+        let list = events
+          .filter(
+            (e) =>
+              filter === "all" ||
+              (filter === "past" ? e.end < today() : e.end >= today()),
+          )
+          .sort((a, b) => a.start.localeCompare(b.start));
+        return /* HTML */ `<div class="toolbar">
+            <div class="tabs">
+              ${[
+                ["upcoming", "À venir"],
+                ["past", "Passées"],
+                ["all", "Toutes"],
+              ]
+                .map(
+                  ([k, v]) =>
+                    /* HTML */ `<button
+                      data-filter="${k}"
+                      class="${filter === k ? "active" : ""}"
+                    >
+                      ${translate(v)}
+                    </button>`,
+                )
+                .join("")}
+            </div>
+            <span class="count"
+              >${countLabel(list.length, "dédicace", "dédicaces", "signing", "signings")}</span
+            >
+          </div>
+          ${
+            list.length
+              ? /* HTML */ `<div class="cards">
+                  ${list
+                    .map(
+                      (e) =>
+                        /* HTML */ `<button
+                          class="card"
+                          style="--card-bg:${cardColor(e)}"
+                          data-open="${esc(e.id)}"
+                        >
+                          <div class="cardtop">
+                            <div class="date">
+                              <b>${date(e.start).getDate()}</b
+                              ><span
+                                >${fmt(e.start, { month: "short" })}
+                                ${date(e.start).getFullYear()}</span
+                              >
+                            </div>
+                            <span class="badge"
+                              >${esc(translate(e.status))}</span
+                            >
+                          </div>
+                          <div class="cardbody">
+                            <h2>${esc(e.title)}</h2>
+                            <p>
+                              ${esc([e.venue, e.city].filter(Boolean).join(" · ") || translate("Lieu à préciser"))}
+                            </p>
+                            <p>
+                              ${esc(fmt(e.start))}${e.end !== e.start ? rangeJoin() + esc(fmt(e.end)) : ""}
+                            </p>
+                          </div>
+                          ${e.notes ? '<div class="cardnote"><span data-i18n>Post-it disponible</span></div>' : ""}
+                          <div class="cardfoot">
+                            <span
+                              >${countLabel(e.slots.length, "créneau", "créneaux", "session", "sessions")}
+                              ·
+                              ${countLabel(e.trips.length, "trajet", "trajets", "journey", "journeys")}</span
+                            ><span><span data-i18n>Ouvrir ↗</span></span>
+                          </div>
+                        </button>`,
+                    )
+                    .join("")}
+                </div>`
+              : /* HTML */ `<div class="empty">
+                  <div class="mark">D.</div>
+                  <h2>
+                    ${events.length ? translate("Aucune dédicace dans cette vue") : translate("Votre prochaine rencontre commence ici")}
+                  </h2>
+                  <p>
+                    ${events.length ? translate("Retrouvez vos autres dédicaces dans « Toutes ».") : translate("Rassemblez les informations de vos déplacements et gardez votre programme à portée de main.")}
+                  </p>
+                  <button class="primary" onclick="edit()">
+                    <span data-i18n>+ Ajouter une dédicace</span></button
+                  >${!events.length ? '<button onclick="example()"><span data-i18n>Essayer avec un exemple</span></button>' : ""}
+                </div>`
+          }`;
+      }
+
+      // Timetable: split overnight journeys by day and allocate lanes for overlaps.
+      function getBlocks(list) {
+        let blocks = [];
+        for (let e of list) {
+          if (e.status === "Annulée") continue;
+          for (let s of e.slots)
+            blocks.push({
+              event: e.id,
+              title: s.label || e.title,
+              sub: e.title,
+              start: s.date + "T" + s.from,
+              end: s.date + "T" + s.to,
+              type: "sign",
+            });
+          for (let t of e.trips)
+            if (t.depart && t.arrive)
+              blocks.push({
+                event: e.id,
+                title:
+                  translate(t.mode) +
+                  " · " +
+                  (t.from || translate("Départ")) +
+                  " → " +
+                  (t.to || translate("Arrivée")),
+                sub: t.ref,
+                start: t.depart,
+                end: t.arrive,
+                type: "transport",
+              });
+        }
+        return blocks;
+      }
+      function schedule(list) {
+        const blocks = getBlocks(list),
+          days = Array.from({ length: 7 }, (_, i) => addDays(week, i));
+        const lo = 0,
+          hi = 24;
+        const parts = days.map((d) =>
+          blocks
+            .filter(
+              (b) => b.start < addDays(d, 1) + "T00:00" && b.end > d + "T00:00",
+            )
+            .map((b) => {
+              const a =
+                  b.start.slice(0, 10) < d
+                    ? 0
+                    : Number(b.start.slice(11, 13)) * 60 +
+                      Number(b.start.slice(14, 16)),
+                z =
+                  b.end.slice(0, 10) > d
+                    ? 1440
+                    : Number(b.end.slice(11, 13)) * 60 +
+                      Number(b.end.slice(14, 16));
+              return { ...b, a, z };
+            }),
+        );
+        return /* HTML */ `<div class="toolbar schedule-toolbar">
+            <div class="actions">
+              <button data-week="-7" aria-label="Semaine précédente">‹</button
+              ><button data-week="0"><span data-i18n>Aujourd’hui</span></button
+              ><button data-week="7" aria-label="Semaine suivante">›</button>
+            </div>
+            <span class="weeklabel"
+              >${fmt(week)}${rangeJoin()}${fmt(days[6], { day: "numeric", month: "long", year: "numeric" })}</span
+            ><input
+              aria-label="Aller à une date"
+              type="date"
+              id="weekdate"
+              value="${week}"
+              style="width:auto"
+            />
+          </div>
+          <div class="legend">
+            <span>${lang === "en" ? "Signings" : "Dédicaces"}</span
+            ><span data-i18n>Transports</span>
+          </div>
+          <div class="schedule-wrap">
+            <div class="schedule">
+              <div class="days">
+                <div></div>
+                ${days.map((d) => /* HTML */ `<div>${fmt(d, { weekday: "short" })}<b>${date(d).getDate()}</b></div>`).join("")}
+              </div>
+              <div class="grid">
+                <div class="timecol">
+                  ${Array.from({ length: hi - lo }, (_, i) => /* HTML */ `<span style="top:${(i * 100) / 24}%">${String(i + lo).padStart(2, "0")}h</span>`).join("")}
+                </div>
+                ${parts
+                  .map((p) => {
+                    p.sort((a, b) => a.a - b.a);
+                    let groups = [],
+                      g = [],
+                      end = -1;
+                    for (let b of p) {
+                      if (b.a >= end && g.length) {
+                        groups.push(g);
+                        g = [];
+                        end = -1;
+                      }
+                      g.push(b);
+                      end = Math.max(end, b.z);
+                    }
+                    if (g.length) groups.push(g);
+                    return /* HTML */ `<div class="daycol">
+                      ${groups
+                        .map((g) => {
+                          let ends = [];
+                          for (let b of g) {
+                            let lane = ends.findIndex((e) => e <= b.a);
+                            if (lane < 0) lane = ends.length;
+                            ends[lane] = b.z;
+                            b.lane = lane;
+                          }
+                          return g
+                            .map(
+                              (b) =>
+                                /* HTML */ `<button
+                                  class="slot ${b.type === "transport" ? "transport" : ""}"
+                                  data-open="${esc(b.event)}"
+                                  title="${esc(b.title + " · " + dt(b.start) + rangeJoin() + dt(b.end))}"
+                                  aria-label="${esc(b.title + " · " + dt(b.start) + rangeJoin() + dt(b.end))}"
+                                  style="top:${(b.a * 100) / 1440}%;height:${((b.z - b.a) * 100) / 1440}%;left:calc(${(b.lane * 100) / ends.length}% + 1px);width:calc(${100 / ends.length}% - 2px)"
+                                >
+                                  <strong
+                                    >${b.start.slice(0, 10) < days[parts.indexOf(p)] ? "00:00" : b.start.slice(11, 16)}
+                                    · ${b.end.slice(11, 16)}</strong
+                                  >${esc(b.title)}
+                                </button>`,
+                            )
+                            .join("");
+                        })
+                        .join("")}
+                    </div>`;
+                  })
+                  .join("")}
+              </div>
+            </div>
+          </div>`;
+      }
+      // Extend native scrolling without replacing existing nodes or resetting the gesture.
+      // Prepending compensates scrollLeft by the exact added width, preserving the view.
+      function setupMonthScroll() {
+        const scroller = document.querySelector(".mini-scroll");
+        if (!scroller) return;
+        const strip = scroller.querySelector(".mini-months");
+        const monthStep = () =>
+          strip.children[1].offsetLeft - strip.children[0].offsetLeft;
+        const target = [...strip.children].find(
+          (el) => el.dataset.month === miniMonth,
+        );
+        if (target)
+          scroller.scrollLeft =
+            target.offsetLeft - strip.firstElementChild.offsetLeft;
+        scroller.onclick = (event) => {
+          const button = event.target.closest("[data-mini-date]");
+          if (!button) return;
+          week = monday(button.dataset.miniDate);
+          render();
+        };
+        scroller.addEventListener(
+          "scroll",
+          () => {
+            const step = monthStep();
+            if (!step) return;
+            const first = strip.firstElementChild.dataset.month;
+            miniMonth = shiftMonth(
+              first,
+              Math.floor(scroller.scrollLeft / step),
+            );
+            if (scroller.scrollLeft < step * 2) {
+              const oldWidth = strip.scrollWidth;
+              strip.insertAdjacentHTML(
+                "afterbegin",
+                Array.from({ length: 6 }, (_, i) =>
+                  miniMonthHTML(shiftMonth(first, i - 6)),
+                ).join(""),
+              );
+              scroller.scrollLeft += strip.scrollWidth - oldWidth;
+            }
+            if (
+              scroller.scrollWidth -
+                scroller.scrollLeft -
+                scroller.clientWidth <
+              step * 2
+            ) {
+              const last = strip.lastElementChild.dataset.month;
+              strip.insertAdjacentHTML(
+                "beforeend",
+                Array.from({ length: 6 }, (_, i) =>
+                  miniMonthHTML(shiftMonth(last, i + 1)),
+                ).join(""),
+              );
+            }
+          },
+          { passive: true },
+        );
+      }
+      function bindContent() {
+        document.querySelectorAll("[data-mini-shift]").forEach(
+          (b) =>
+            (b.onclick = () => {
+              miniMonth = shiftMonth(miniMonth, Number(b.dataset.miniShift));
+              render();
+            }),
+        );
+        setupMonthScroll();
+        if ($("#mini-current"))
+          $("#mini-current").onclick = () => {
+            miniMonth = today().slice(0, 7) + "-01";
+            week = monday(today());
+            render();
+          };
+        document.querySelectorAll("[data-open]").forEach(
+          (b) =>
+            (b.onclick = () => {
+              selected = b.dataset.open;
+              let e = events.find((e) => e.id === selected);
+              week = monday(e.start);
+              render();
+            }),
+        );
+        document.querySelectorAll("[data-filter]").forEach(
+          (b) =>
+            (b.onclick = () => {
+              filter = b.dataset.filter;
+              render();
+            }),
+        );
+        document.querySelectorAll("[data-week]").forEach(
+          (b) =>
+            (b.onclick = () => {
+              week =
+                b.dataset.week === "0"
+                  ? monday(today())
+                  : addDays(week, +b.dataset.week);
+              syncMiniMonth();
+              render();
+            }),
+        );
+        if ($("#weekdate"))
+          $("#weekdate").onchange = (e) => {
+            if (e.target.value) {
+              week = monday(e.target.value);
+              syncMiniMonth();
+              render();
+            }
+          };
+      }
+
+      // Read-only event details. Escape all user-supplied content in HTML.
+      function renderDetail() {
+        let e = events.find((x) => x.id === selected);
+        if (!e) {
+          selected = null;
+          render();
+          return;
+        }
+        $("#app").innerHTML = /* HTML */ `<div class="toolbar">
+            <button id="back">
+              <span data-i18n>‹ Retour à l’agenda</span>
+            </button>
+            <div class="actions">
+              <button id="print"><span data-i18n>Imprimer</span></button
+              ><button id="export-event"><span data-i18n>Exporter cette fiche</span></button
+              ><button class="primary" id="edit">
+                <span data-i18n>Modifier</span></button
+              ><button class="danger" id="delete">
+                <span data-i18n>Supprimer</span>
+              </button>
+            </div>
+          </div>
+          <div class="detailhead" style="--card-bg:${cardColor(e)}">
+            <div class="eyebrow">
+              ${esc(translate(e.status))} ·
+              ${esc(fmt(e.start, { day: "numeric", month: "long", year: "numeric" }))}${e.end !== e.start ? rangeJoin() + esc(fmt(e.end)) : ""}
+            </div>
+            <h1 style="margin-bottom:10px">${esc(e.title)}</h1>
+            <p>${esc([e.venue, e.city].filter(Boolean).join(" · "))}</p>
+            ${linkAddress(e.address)}${festivalLink(e.website)}
+          </div>
+          <div class="detailgrid">
+            <section class="panel">
+              <h2><span data-i18n>Contact</span></h2>
+              <p>${esc(e.contact || translate("Contact à préciser"))}</p>
+              <div class="links">
+                ${e.email ? /* HTML */ `<a href="mailto:${esc(e.email)}">${esc(e.email)}</a>` : ""}${phone(e.phone)}
+              </div>
+            </section>
+            <section class="panel">
+              <h2><span data-i18n>Hôtel</span></h2>
+              ${
+                e.hotel
+                  ? /* HTML */ `<p><strong>${esc(e.hotel)}</strong></p>
+                      ${linkAddress(e.hotelAddress)}
+                      <p class="subtle">
+                        ${e.hotelIn ? (lang === "en" ? "From " : "Du ") + fmt(e.hotelIn) : ""}${e.hotelOut ? rangeJoin() + fmt(e.hotelOut) : ""}
+                      </p>
+                      <div class="links">${phone(e.hotelPhone)}</div>
+                      ${e.hotelRef ? /* HTML */ `<p class="subtle">${lang === "en" ? "Booking: " : "Réservation : "}${esc(e.hotelRef)}</p>` : ""}`
+                  : '<p class="subtle"><span data-i18n>Aucun hôtel renseigné.</span></p>'
+              }
+            </section>
+            <section class="panel">
+              <h2><span data-i18n>Transports</span></h2>
+              ${
+                e.trips.length
+                  ? e.trips
+                      .map(
+                        (t) =>
+                          /* HTML */ `<div class="item">
+                            <span class="badge">${esc(translate(t.mode))}</span>
+                            <p>
+                              <strong
+                                >${esc(t.from || translate("Départ"))} →
+                                ${esc(t.to || translate("Arrivée"))}</strong
+                              >
+                            </p>
+                            <p>${dt(t.depart)} → ${dt(t.arrive)}</p>
+                            ${t.ref ? /* HTML */ `<p class="subtle">${esc(t.ref)}</p>` : ""}
+                          </div>`,
+                      )
+                      .join("")
+                  : '<p class="subtle"><span data-i18n>Aucun trajet renseigné.</span></p>'
+              }
+            </section>
+            <section class="panel">
+              <h2><span data-i18n>Documents</span></h2>
+              ${e.files.map((f, i) => /* HTML */ `<p><button data-file="${i}">↓ ${esc(f.name)}</button></p>`).join("")}${!e.files.length ? '<p class="subtle"><span data-i18n>Aucun document joint.</span></p>' : ""}
+            </section>
+            <section class="panel reviewpanel">
+              <h2><span data-i18n>Mon retour d’expérience</span></h2>
+              ${e.notes ? /* HTML */ `<div class="postit readnote">${esc(e.notes)}</div>` : '<p class="subtle"><span data-i18n>Ajoutez votre post-it dans Modifier.</span></p>'}
+            </section>
+            <section class="panel wide">
+              <h2><span data-i18n>Programme du déplacement</span></h2>
+              ${!e.slots.length ? '<p class="subtle"><span data-i18n>Ajoutez vos créneaux avec le bouton Modifier.</span></p>' : ""}${schedule([e])}
+            </section>
+          </div>`;
+        $("#back").onclick = () => {
+          selected = null;
+          render();
+        };
+        $("#edit").onclick = () => edit(e);
+        $("#print").onclick = () => window.print();
+        $("#export-event").onclick = () => {
+          $("#share-form").reset();
+          $("#share-event").showModal();
+        };
+        $("#delete").onclick = async () => {
+          if (ask("Supprimer cette dédicace et ses documents ?"))
+            try {
+              await persist(events.filter((x) => x.id !== e.id));
+              selected = null;
+              render();
+              toast("Dédicace supprimée.");
+            } catch {
+              toast("Suppression impossible. Réessayez.");
+            }
+        };
+        document
+          .querySelectorAll("[data-file]")
+          .forEach(
+            (b) => (b.onclick = () => downloadData(e.files[+b.dataset.file])),
+          );
+        bindContent();
+      }
+
+      // Editor fields and repeatable journeys / signing sessions.
+      const fields = [
+        "title",
+        "start",
+        "end",
+        "venue",
+        "city",
+        "address",
+        "website",
+        "status",
+        "contact",
+        "email",
+        "phone",
+        "hotel",
+        "hotelAddress",
+        "hotelIn",
+        "hotelOut",
+        "hotelPhone",
+        "hotelRef",
+        "notes",
+      ];
+      function edit(e) {
+        draft = e
+          ? structuredClone(e)
+          : {
+              id: uid(),
+              start: today(),
+              end: today(),
+              status: "À confirmer",
+              trips: [],
+              slots: [],
+              files: [],
+            };
+        $("#eventform").reset();
+        for (let k of fields)
+          $("#eventform").elements[k].value = draft[k] || "";
+        $("#formtitle").textContent = e
+          ? translate("Modifier la dédicace")
+          : translate("Nouvelle dédicace");
+        $("#trips").innerHTML = "";
+        $("#slots").innerHTML = "";
+        draft.trips.forEach((t) => addTrip(t));
+        draft.slots.forEach((s) => addSlot(s));
+        fileList();
+        $("#editor").showModal();
+      }
+      function field(label, key, value = "", type = "text", required = false) {
+        return /* HTML */ `<label
+          >${esc(translate(label))}<input
+            data-key="${key}"
+            type="${type}"
+            value="${esc(value)}"
+            ${required ? "required" : ""}
+        /></label>`;
+      }
+      function addTrip(t = {}) {
+        let el = document.createElement("div");
+        el.className = "repeat";
+        el.innerHTML = /* HTML */ `<div class="fields">
+            <label
+              ><span data-i18n>Transport</span
+              ><select data-key="mode">
+                ${["Train", "Avion", "Voiture", "Bus", "Taxi", "Autre"].map((m) => /* HTML */ `<option value="${m}" ${t.mode === m ? "selected" : ""}>${translate(m)}</option>`).join("")}
+              </select></label
+            >${field("N° de billet / réservation / siège", "ref", t.ref)}${field("Lieu de départ", "from", t.from)}${field("Lieu d’arrivée", "to", t.to)}${field("Départ", "depart", t.depart, "datetime-local", true)}${field("Arrivée", "arrive", t.arrive, "datetime-local", true)}
+          </div>
+          <button type="button" class="remove danger">
+            <span data-i18n>Retirer ce trajet</span>
+          </button>`;
+        el.querySelector("button").onclick = () => el.remove();
+        $("#trips").append(el);
+      }
+      function addSlot(s = {}) {
+        let el = document.createElement("div");
+        el.className = "repeat";
+        el.innerHTML = /* HTML */ `<div class="fields">
+            ${field("Date", "date", s.date || $("#eventform").elements.start.value, "date", true)}${field("Intitulé / stand", "label", s.label || translate("Dédicace"))}${field("Début", "from", s.from || "10:00", "time", true)}${field("Fin", "to", s.to || "12:00", "time", true)}
+          </div>
+          <button type="button" class="remove danger">
+            <span data-i18n>Retirer ce créneau</span>
+          </button>`;
+        el.querySelector("button").onclick = () => el.remove();
+        $("#slots").append(el);
+      }
+      function rows(id) {
+        return [...document.querySelectorAll(id + " .repeat")].map((r) =>
+          Object.fromEntries(
+            [...r.querySelectorAll("[data-key]")].map((i) => [
+              i.dataset.key,
+              i.value.trim(),
+            ]),
+          ),
+        );
+      }
+      function fileList() {
+        $("#files").innerHTML = draft.files
+          .map(
+            (f, i) =>
+              /* HTML */ `<div>
+                <span
+                  >${esc(f.name)} · ${(f.size / 1024).toFixed(0)}
+                  ${lang === "en" ? "KB" : "Ko"}</span
+                ><button
+                  type="button"
+                  data-remove-file="${i}"
+                  aria-label="${lang === "en" ? "Remove" : "Retirer"} ${esc(f.name)}"
+                >
+                  ✕
+                </button>
+              </div>`,
+          )
+          .join("");
+        document.querySelectorAll("[data-remove-file]").forEach(
+          (b) =>
+            (b.onclick = () => {
+              draft.files.splice(+b.dataset.removeFile, 1);
+              fileList();
+            }),
+        );
+      }
+
+      // Read attachments locally; retain the draft owner during asynchronous reads.
+      $("#attachments").onchange = async (ev) => {
+        const owner = draft;
+        busyFiles++;
+        $("#save").disabled = true;
+        try {
+          for (let f of ev.target.files) {
+            if (
+              f.size > 10 * 1024 * 1024 ||
+              ![
+                "application/pdf",
+                "image/jpeg",
+                "image/png",
+                "image/webp",
+              ].includes(f.type)
+            ) {
+              toast(
+                "Document refusé : utilisez un PDF ou une image de moins de 10 Mo.",
+              );
+              continue;
+            }
+            let data = await new Promise((res, rej) => {
+              let r = new FileReader();
+              r.onload = () => res(r.result);
+              r.onerror = rej;
+              r.readAsDataURL(f);
+            });
+            owner.files.push({
+              name: f.name,
+              type: f.type,
+              size: f.size,
+              data,
+            });
+          }
+          if (draft === owner) fileList();
+        } catch {
+          toast("Ce document n’a pas pu être lu.");
+        } finally {
+          busyFiles--;
+          $("#save").disabled = busyFiles > 0;
+          ev.target.value = "";
+        }
+      };
+
+      // Validate chronology before committing the complete edited record.
+      $("#eventform").onsubmit = async (ev) => {
+        ev.preventDefault();
+        if (busyFiles) return;
+        let e = { ...draft };
+        for (let k of fields) e[k] = $("#eventform").elements[k].value.trim();
+        e.trips = rows("#trips");
+        e.slots = rows("#slots");
+        if (!e.title) return toast("Indiquez le nom de la dédicace.");
+        if (e.website) {
+          const url = websiteURL(e.website);
+          if (!url)
+            return toast(
+              "Indiquez une adresse de site valide, en http ou https.",
+            );
+          e.website = url;
+        }
+        if (e.end < e.start)
+          return toast("Le dernier jour doit suivre le premier.");
+        if (e.hotelIn && e.hotelOut && e.hotelOut < e.hotelIn)
+          return toast("Vérifiez les dates de l’hôtel.");
+        if (e.trips.some((t) => t.arrive <= t.depart))
+          return toast("Chaque arrivée doit suivre le départ.");
+        if (
+          e.slots.some(
+            (s) => s.to <= s.from || s.date < e.start || s.date > e.end,
+          )
+        )
+          return toast(
+            "Chaque créneau doit être compris dans les jours de dédicace, avec une fin après le début.",
+          );
+        $("#save").disabled = true;
+        try {
+          let next = events.filter((x) => x.id !== e.id);
+          next.push(e);
+          await persist(next);
+          $("#editor").close();
+          selected = e.id;
+          week = monday(e.start);
+          render();
+          toast(
+            memoryOnly
+              ? "Dédicace ajoutée à la session. Pensez à Sauvegarder avant de fermer."
+              : "Dédicace enregistrée sur cet appareil.",
+          );
+        } catch {
+          toast(
+            "Sauvegarde impossible. L’espace disponible est peut-être insuffisant. Exportez vos données.",
+          );
+        } finally {
+          $("#save").disabled = false;
+        }
+      };
+
+      // Portable JSON backup includes attachments. No network transfer is made.
+      function download(blob, name) {
+        let u = URL.createObjectURL(blob),
+          a = document.createElement("a");
+        a.href = u;
+        a.download = name;
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(u), 30000);
+      }
+      function downloadData(f) {
+        const raw = atob(f.data.split(",")[1]),
+          bytes = Uint8Array.from(raw, (c) => c.charCodeAt(0));
+        download(new Blob([bytes], { type: f.type }), f.name);
+      }
+      $("#export").onclick = () => {
+        download(
+          new Blob(
+            [
+              JSON.stringify(
+                {
+                  app: "eigrutel-dedicaces",
+                  version: 1,
+                  appVersion: APP_VERSION,
+                  events,
+                },
+                null,
+                2,
+              ),
+            ],
+            { type: "application/json" },
+          ),
+          "dedicaces-" + today() + ".json",
+        );
+        unsaved = false;
+        toast("Sauvegarde préparée. Conservez le fichier JSON téléchargé.");
+      };
+
+      // Validate the full backup before replacement; retain legacy rating metadata.
+      function validateImport(d) {
+        if (
+          d.app !== "eigrutel-dedicaces" ||
+          d.version !== 1 ||
+          !Array.isArray(d.events)
+        )
+          throw Error();
+        let ids = new Set();
+        return d.events.map((e) => {
+          if (!e || typeof e.id !== "string" || ids.has(e.id)) throw Error();
+          ids.add(e.id);
+          if (e.rating === undefined) e.rating = 0;
+          if (!Number.isInteger(e.rating) || e.rating < 0 || e.rating > 5)
+            throw Error();
+          for (let k of fields) {
+            if (e[k] === undefined) e[k] = "";
+            if (typeof e[k] !== "string") throw Error();
+          }
+          if (
+            !e.title ||
+            !validDate(e.start) ||
+            !validDate(e.end) ||
+            e.end < e.start
+          )
+            throw Error();
+          if (
+            !Array.isArray(e.trips) ||
+            !Array.isArray(e.slots) ||
+            !Array.isArray(e.files)
+          )
+            throw Error();
+          for (let t of e.trips) {
+            for (let k of ["mode", "ref", "from", "to", "depart", "arrive"])
+              if (typeof t[k] !== "string") throw Error();
+            if (
+              !validDT(t.depart) ||
+              !validDT(t.arrive) ||
+              t.arrive <= t.depart
+            )
+              throw Error();
+          }
+          for (let s of e.slots) {
+            if (
+              typeof s.label !== "string" ||
+              !validDate(s.date) ||
+              !validTime(s.from) ||
+              !validTime(s.to) ||
+              s.to <= s.from ||
+              s.date < e.start ||
+              s.date > e.end
+            )
+              throw Error();
+          }
+          for (let f of e.files)
+            if (
+              typeof f.name !== "string" ||
+              typeof f.size !== "number" ||
+              ![
+                "application/pdf",
+                "image/jpeg",
+                "image/png",
+                "image/webp",
+              ].includes(f.type) ||
+              typeof f.data !== "string" ||
+              !f.data.startsWith("data:" + f.type + ";base64,") ||
+              !/^[A-Za-z0-9+/]*={0,2}$/.test(f.data.split(",")[1])
+            )
+              throw Error();
+          return e;
+        });
+      }
+      function validDate(s) {
+        return (
+          typeof s === "string" &&
+          /^\d{4}-\d{2}-\d{2}$/.test(s) &&
+          !isNaN(date(s)) &&
+          localDate(date(s)) === s
+        );
+      }
+      function validTime(s) {
+        return typeof s === "string" && /^([01]\d|2[0-3]):[0-5]\d$/.test(s);
+      }
+      function validDT(s) {
+        return (
+          typeof s === "string" &&
+          validDate(s.slice(0, 10)) &&
+          s[10] === "T" &&
+          validTime(s.slice(11))
+        );
+      }
+      // A single-event envelope cannot be mistaken for a whole-agenda backup.
+      // Personal notes and attachments are opt-in; never mutate the source record.
+      function eventPackage(event, notes = false, files = false) {
+        const copy = structuredClone(event);
+        if (!notes) copy.notes = "";
+        if (!files) copy.files = [];
+        return {app: "eigrutel-dedicaces", kind: "festival-card", version: 1, appVersion: APP_VERSION, event: copy};
+      }
+      $("#share-cancel").onclick = () => $("#share-event").close();
+      $("#share-form").onsubmit = ev => {
+        ev.preventDefault();
+        const event = events.find(e => e.id === selected);
+        if (!event) return;
+        const data = eventPackage(event, $("#share-notes").checked, $("#share-files").checked);
+        const name = event.title.normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/gi, "-").replace(/^-|-$/g, "").slice(0, 80) || "festival";
+        download(new Blob([JSON.stringify(data, null, 2)], {type: "application/json"}), "dedicaces-fiche-" + name + ".json");
+        $("#share-event").close();
+        toast("Fiche exportée. Vous pouvez transmettre le fichier JSON à votre collègue.");
+      };
+      async function importEvent(data) {
+        if (!data || data.app !== "eigrutel-dedicaces" || data.kind !== "festival-card" || data.version !== 1 || !data.event) throw Error("Invalid event envelope");
+        const [event] = validateImport({app: data.app, version: 1, events: [structuredClone(data.event)]});
+        const duplicate = events.some(e => e.id === event.id || (e.title === event.title && e.start === event.start && e.end === event.end));
+        const message = lang === "en"
+          ? `Add “${event.title}” to your planner? Other events will not be replaced.${duplicate ? " A similar event already exists: this will create an additional copy." : ""}`
+          : `Ajouter « ${event.title} » à votre agenda ? Les autres fiches ne seront pas remplacées.${duplicate ? " Une fiche similaire existe déjà : une copie supplémentaire sera créée." : ""}`;
+        if (!ask(message)) return false;
+        // Each recipient owns an independent copy, including on repeat import.
+        event.id = uid();
+        await persist([...events, event]);
+        selected = event.id;
+        week = monday(event.start);
+        render();
+        toast("Fiche ajoutée à votre agenda. Les autres dédicaces sont conservées.");
+        return true;
+      }
+      $("#import-event").onclick = () => $("#eventfile").click();
+      $("#eventfile").onchange = async ev => {
+        const file = ev.target.files[0];
+        if (!file) return;
+        try { await importEvent(JSON.parse(await file.text())); }
+        catch { toast("Import impossible : la fiche est invalide ou le stockage est indisponible. Votre agenda est conservé."); }
+        finally { ev.target.value = ""; }
+      };
+      $("#import").onclick = () => $("#importfile").click();
+      $("#importfile").onchange = async (ev) => {
+        let f = ev.target.files[0];
+        if (!f) return;
+        try {
+          const data = JSON.parse(await f.text());
+          if (data?.kind === "festival-card") {
+            await importEvent(data);
+            ev.target.value = "";
+            return;
+          }
+          let next = validateImport(data);
+          if (
+            ask(
+              lang === "en"
+                ? `Restore ${next.length} signing(s)? This will replace the current planner. Back it up first.`
+                : `Charger ${next.length} dédicace(s) ? L’agenda présent sera remplacé. Pensez à le sauvegarder auparavant.`,
+            )
+          ) {
+            await persist(next);
+            selected = null;
+            render();
+            toast("Agenda chargé.");
+          }
+        } catch {
+          toast(
+            "Chargement impossible : fichier invalide ou espace disponible insuffisant. Votre agenda est conservé.",
+          );
+        }
+        ev.target.value = "";
+      };
+
+      // Optional fictional sample, created in the selected interface language.
+      async function example() {
+        let start = addDays(monday(today()), 5);
+        let e = {
+          id: uid(),
+          title: translate("Festival BD · Exemple"),
+          start,
+          end: addDays(start, 1),
+          venue: translate("Maison du livre"),
+          city: translate("Ville exemple"),
+          address: "",
+          status: "À confirmer",
+          contact: translate("Organisation du festival"),
+          email: "",
+          phone: "",
+          hotel: translate("Hôtel à confirmer"),
+          hotelAddress: "",
+          hotelIn: addDays(start, -1),
+          hotelOut: addDays(start, 1),
+          hotelPhone: "",
+          hotelRef: "",
+          notes: translate(
+            "Fiche fictive pour essayer l’agenda. Modifiez-la ou supprimez-la.",
+          ),
+          trips: [
+            {
+              mode: "Train",
+              ref: translate("Billet à réserver"),
+              from: translate("Gare de départ"),
+              to: translate("Gare du festival"),
+              depart: start + "T08:00",
+              arrive: start + "T09:30",
+            },
+          ],
+          slots: [
+            {
+              date: start,
+              from: "10:00",
+              to: "12:00",
+              label: translate("Dédicace du matin"),
+            },
+            {
+              date: start,
+              from: "14:00",
+              to: "17:00",
+              label: translate("Dédicace de l’après-midi"),
+            },
+          ],
+          files: [],
+        };
+        try {
+          await persist([...events, e]);
+          render();
+          toast("Exemple fictif ajouté.");
+        } catch {
+          toast("Impossible d’enregistrer l’exemple.");
+        }
+      }
+
+      // Event bindings and startup.
+      $("#eventform").elements.start.addEventListener("change", (ev) => {
+        let end = $("#eventform").elements.end;
+        if (!end.value || end.value < ev.target.value)
+          end.value = ev.target.value;
+      });
+      window.addEventListener("beforeunload", (e) => {
+        if (memoryOnly && unsaved) {
+          e.preventDefault();
+          e.returnValue = "";
+        }
+      });
+      $("#addtrip").onclick = () => addTrip();
+      $("#addslot").onclick = () => addSlot();
+      $("#close").onclick = $("#cancel").onclick = () => {
+        if (ask("Fermer sans enregistrer les modifications ?"))
+          $("#editor").close();
+      };
+      $("#editor").addEventListener("cancel", (e) => {
+        e.preventDefault();
+        $("#cancel").click();
+      });
+      $("#info").onclick = () => $("#help").showModal();
+      document.querySelectorAll("[data-nav]").forEach(
+        (b) =>
+          (b.onclick = () => {
+            view = b.dataset.nav;
+            selected = null;
+            render();
+          }),
+      );
+      init();
+    </script>
+  </body>
+</html>
